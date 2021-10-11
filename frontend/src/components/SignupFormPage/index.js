@@ -13,6 +13,7 @@ export default function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [businessAccount, setBusinessAccount] = useState(false);
 
   if (user) return <Redirect to="/" />;
 
@@ -20,7 +21,7 @@ export default function SignupFormPage() {
     e.preventDefault();
     setErrors([]);
     if (password === confirmPassword) {
-      dispatch(signup({ username, email, password })).catch(async (res) => {
+      dispatch(signup({ username, email, password, businessAccount })).catch(async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       });
@@ -66,6 +67,27 @@ export default function SignupFormPage() {
             type="text"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </label>
+        <p>Is this a Business Account?</p>
+        <label>
+          Yes
+          <input
+            type="radio"
+            name="businessAccount"
+            value={true}
+            checked={businessAccount === true}
+            onChange={(e) => setBusinessAccount(true)}
+          />
+        </label>
+        <label>
+          No
+          <input
+            type="radio"
+            name="businessAccount"
+            value={false}
+            checked={businessAccount === false}
+            onChange={(e) => setBusinessAccount(false)}
           />
         </label>
         <button>Sign Up</button>
