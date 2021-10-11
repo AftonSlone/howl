@@ -1,5 +1,6 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
+const bcrypt = require("bcryptjs");
 
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
 const { check } = require("express-validator");
@@ -27,7 +28,7 @@ router.post(
   asyncHandler(async (req, res, next) => {
     const { credential, password } = req.body;
 
-    const user = await User.findOne({
+    const data = await User.findOne({
       where: {
         [Op.or]: {
           username: credential,
@@ -36,14 +37,18 @@ router.post(
       },
     });
 
-    if (user && user.validatePassword(password)) {
+    if (data && bcrypt.compareSync(password, data.hashedPassword)) {
+      const user = {
+        id: data.id,
+        businessAccount: data.businessAccount,
+        email: data.email,
+        username: data.username,
+      };
       await setTokenCookie(res, user);
-      return res.json({
-        user,
-      });
+      return res.json({ user });
     }
 
-    if (!user) {
+    if (!data) {
       const err = new Error("Login failed");
       err.status = 401;
       err.title = "Login failed";
@@ -63,9 +68,7 @@ router.delete("/", (req, res) => {
 router.get("/", restoreUser, (req, res) => {
   const { user } = req;
   if (user) {
-    return res.json({
-      user: user,
-    });
+    return res.json({ user: user });
   } else return res.json({ user: null });
 });
 module.exports = router;

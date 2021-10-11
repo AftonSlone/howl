@@ -1,0 +1,44 @@
+.navContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    background-color: burlywood;
+}
+
+.menuContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    position: absolute;
+    background-color: crimson;
+    top: 68px;
+    right: 10px;
+}
+
+
+a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: 60px;
+    text-decoration: none;
+}
+
+.logoutBtnContainer {
+    z-index: 2;
+}
+
+.profileButton {
+    font-size: 30PX;
+    width: 10%;
+    height: 60PX;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
