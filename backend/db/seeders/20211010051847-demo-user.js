@@ -9,7 +9,7 @@ const users = [
     businessAccount: true,
   },
 ];
-for (let i = 0; i < 499; i++) {
+for (let i = 0; i < 49; i++) {
   users.push({
     username: faker.internet.userName(),
     email: faker.internet.email(),
@@ -18,7 +18,7 @@ for (let i = 0; i < 499; i++) {
   });
 }
 
-for (let j = 0; j < 500; j++) {
+for (let j = 0; j < 50; j++) {
   users.push({
     username: faker.internet.userName(),
     email: faker.internet.email(),

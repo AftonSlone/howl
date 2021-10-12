@@ -19,7 +19,7 @@ module.exports = {
         {
           name: "Nopa",
           typeId: 1,
-          ownerId,
+          ownerId: Math.floor(Math.random() * (100 - 51 + 1) + 51),
           loc: JSON.stringify({ lat: 37.77489, lng: -122.43763 }),
           stateId: 5,
           cityId: 1,
@@ -69,7 +69,7 @@ module.exports = {
         {
           name: "K & C Auto Service",
           typeId: 2,
-          ownerId,
+          ownerId: Math.floor(Math.random() * (100 - 51 + 1) + 51),
           loc: JSON.stringify({ lat: 37.778886, lng: -122.401807 }),
           stateId: 5,
           cityId: 1,
@@ -119,7 +119,7 @@ module.exports = {
         {
           name: "Westfield San Francisco Centre",
           typeId: 3,
-          ownerId,
+          ownerId: Math.floor(Math.random() * (100 - 51 + 1) + 51),
           loc: JSON.stringify({ lat: 37.7835636, lng: -122.4070397 }),
           stateId: 5,
           cityId: 1,
@@ -169,7 +169,7 @@ module.exports = {
         {
           name: "FITNESS SF - Fillmore",
           typeId: 4,
-          ownerId,
+          ownerId: Math.floor(Math.random() * (100 - 51 + 1) + 51),
           loc: JSON.stringify({ lat: 37.7829647, lng: -122.4338268 }),
           stateId: 5,
           cityId: 1,
@@ -219,7 +219,7 @@ module.exports = {
         {
           name: "Fiorella - Sunset",
           typeId: 5,
-          ownerId,
+          ownerId: Math.floor(Math.random() * (100 - 51 + 1) + 51),
           loc: JSON.stringify({ lat: 37.7651461, lng: -122.4662658 }),
           stateId: 5,
           cityId: 1,
