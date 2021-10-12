@@ -24,7 +24,7 @@ export default function Navigation() {
   };
   return (
     <nav className="navContainer">
-      <NavLink to="/">Home</NavLink>
+      <NavLink to="/"><img className='navLogo' src='https://i.imgur.com/SzFAJOX.png' /></NavLink>
       {!user && <button onClick={() => setLoginModal(true)}>Login</button>}
       {!user && <button onClick={() => setSignupModal(true)}>Signup</button>}
       {!user && (

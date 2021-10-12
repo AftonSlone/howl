@@ -4,8 +4,6 @@ import { useDispatch } from "react-redux";
 
 import { restoreUser } from "./store/session";
 
-import LoginFormPage from "./components/Navigation/LoginFormPage";
-import SignupFormPage from "./components/Navigation/SignupFormPage";
 import Homepage from "./components/Homepage";
 
 function App() {
@@ -20,12 +18,6 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Homepage />
-        </Route>
-        <Route path="/login">
-          <LoginFormPage />
-        </Route>
-        <Route path="/signup">
-          <SignupFormPage />
         </Route>
       </Switch>
     </>
