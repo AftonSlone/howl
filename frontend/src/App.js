@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 
 import { restoreUser } from "./store/session";
 
-import LoginFormPage from "./components/LoginFormPage";
-import SignupFormPage from "./components/SignupFormPage";
+import LoginFormPage from "./components/Navigation/LoginFormPage";
+import SignupFormPage from "./components/Navigation/SignupFormPage";
 import Homepage from "./components/Homepage";
 
 function App() {
