@@ -14,7 +14,10 @@ input[type="text"] {
 }
 
 .loginForm {
-  background-color: bisque;
+  box-sizing: border-box;
+  padding: 60px;
+  background-color: white;
+  color: black;
   width: 40%;
   display: flex;
   flex-direction: column;
@@ -22,14 +25,18 @@ input[type="text"] {
   align-items: center;
   top: 20%;
   right: 30%;
+  border-radius: 10px;
+  border: 3px solid red;
 }
 
 .loginFormWrapper {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(42, 41, 41, 0.787);
   position: absolute;
+  top: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }

@@ -1,6 +1,5 @@
 import "./Navigation.css";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/session";
 import ProfileButton from "./ProfileButton";
@@ -24,21 +23,30 @@ export default function Navigation() {
   };
   return (
     <nav className="navContainer">
-      <NavLink to="/"><img className='navLogo' src='https://i.imgur.com/SzFAJOX.png' /></NavLink>
-      {!user && <button onClick={() => setLoginModal(true)}>Login</button>}
-      {!user && <button onClick={() => setSignupModal(true)}>Signup</button>}
+      {/* <NavLink to="/"><img className='navLogo' src='https://i.imgur.com/SzFAJOX.png' /></NavLink> */}
       {!user && (
-        <button
+        <div className="navBtn" onClick={() => setLoginModal(true)}>
+          Login
+        </div>
+      )}
+      {!user && (
+        <div className="navBtn navBtnSignup" onClick={() => setSignupModal(true)}>
+          Signup
+        </div>
+      )}
+      {!user && (
+        <div
+          className="navBtn navBtnSignup"
           onClick={() => {
             dispatch(login({ credential: "demo", password: "password" }));
           }}
         >
           Demo
-        </button>
+        </div>
       )}
       {clicked && <Menu user={user} />}
-      {loginModal && <LoginFormPage setLoginModal={setLoginModal}/>}
-      {signupModal && <SignupFormPage setSignupModal={setSignupModal}/>}
+      {loginModal && <LoginFormPage setLoginModal={setLoginModal} />}
+      {signupModal && <SignupFormPage setSignupModal={setSignupModal} />}
       {user && <ProfileButton handleClick={handleClick} />}
     </nav>
   );
