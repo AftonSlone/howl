@@ -1,10 +1,10 @@
 import "./LoginForm.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../store/session";
+import { login } from "../../../store/session";
 import { Redirect } from "react-router";
 
-export default function LoginFormPage() {
+export default function LoginFormPage({ setLoginModal }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
 
@@ -21,8 +21,8 @@ export default function LoginFormPage() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="formWrapper">
+      <form onSubmit={handleSubmit} className="formContainer">
         <ul>
           {errors.map((err) => (
             <li key={err}>{err}</li>
@@ -44,7 +44,10 @@ export default function LoginFormPage() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
+        <div className='loginBtnContainer'>
         <button>Log In</button>
+        <button onClick={() => setLoginModal(false)}>Cancel</button>
+        </div>
       </form>
     </div>
   );

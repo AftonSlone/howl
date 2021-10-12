@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/session";
 import ProfileButton from "./ProfileButton";
-import LoginFormPage from "../LoginFormPage";
-import SignupFormPage from "../SignupFormPage";
+import LoginFormPage from "./LoginFormPage";
+import SignupFormPage from "./SignupFormPage";
 import Menu from "./Menu";
 
 export default function Navigation() {
@@ -37,8 +37,8 @@ export default function Navigation() {
         </button>
       )}
       {clicked && <Menu user={user} />}
-      {loginModal && <LoginFormPage />}
-      {signupModal && <SignupFormPage />}
+      {loginModal && <LoginFormPage setLoginModal={setLoginModal}/>}
+      {signupModal && <SignupFormPage setSignupModal={setSignupModal}/>}
       {user && <ProfileButton handleClick={handleClick} />}
     </nav>
   );

@@ -1,7 +1,7 @@
 import "./SignupForm.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signup } from "../../store/session";
+import { signup } from "../../../store/session";
 import { Redirect } from "react-router";
 
 export default function SignupFormPage() {
@@ -21,10 +21,12 @@ export default function SignupFormPage() {
     e.preventDefault();
     setErrors([]);
     if (password === confirmPassword) {
-      dispatch(signup({ username, email, password, businessAccount })).catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
+      dispatch(signup({ username, email, password, businessAccount })).catch(
+        async (res) => {
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        }
+      );
     } else {
       setErrors(["Passwords must match"]);
     }
