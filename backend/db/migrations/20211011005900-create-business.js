@@ -22,6 +22,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: "Users" },
       },
+      loc: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
       stateId: {
         allowNull: false,
         type: Sequelize.INTEGER,
