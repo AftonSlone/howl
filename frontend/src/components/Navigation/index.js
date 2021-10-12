@@ -25,8 +25,8 @@ export default function Navigation() {
   return (
     <nav className="navContainer">
       <NavLink to="/">Home</NavLink>
-      {!user && <button>Login</button>}
-      {!user && <button>Signup</button>}
+      {!user && <button onClick={() => setLoginModal(true)}>Login</button>}
+      {!user && <button onClick={() => setSignupModal(true)}>Signup</button>}
       {!user && (
         <button
           onClick={() => {
