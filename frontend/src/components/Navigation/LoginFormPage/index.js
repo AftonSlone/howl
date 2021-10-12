@@ -21,8 +21,8 @@ export default function LoginFormPage({ setLoginModal }) {
   };
 
   return (
-    <div className="formWrapper">
-      <form onSubmit={handleSubmit} className="formContainer">
+    <div className="loginFormWrapper">
+      <form onSubmit={handleSubmit} className="loginForm">
         <ul>
           {errors.map((err) => (
             <li key={err}>{err}</li>

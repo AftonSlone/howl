@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signup } from "../../../store/session";
 import { Redirect } from "react-router";
 
-export default function SignupFormPage() {
+export default function SignupFormPage({ setSignupModal }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
 
@@ -32,8 +32,8 @@ export default function SignupFormPage() {
     }
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="signupFormWrapper">
+      <form onSubmit={handleSubmit} className="signupForm">
         <ul>
           {errors.map((err) => (
             <li key={err}>{err}</li>
@@ -72,27 +72,32 @@ export default function SignupFormPage() {
           />
         </label>
         <p>Is this a Business Account?</p>
-        <label>
-          Yes
-          <input
-            type="radio"
-            name="businessAccount"
-            value={true}
-            checked={businessAccount === true}
-            onChange={(e) => setBusinessAccount(true)}
-          />
-        </label>
-        <label>
-          No
-          <input
-            type="radio"
-            name="businessAccount"
-            value={false}
-            checked={businessAccount === false}
-            onChange={(e) => setBusinessAccount(false)}
-          />
-        </label>
-        <button>Sign Up</button>
+        <div className="signupCheckboxContainer">
+          <span>
+            Yes
+            <input
+              type="checkbox"
+              name="businessAccount"
+              value={true}
+              checked={businessAccount === true}
+              onChange={(e) => setBusinessAccount(true)}
+            />
+          </span>
+          <span>
+            No
+            <input
+              type="checkbox"
+              name="businessAccount"
+              value={false}
+              checked={businessAccount === false}
+              onChange={(e) => setBusinessAccount(false)}
+            />
+          </span>
+        </div>
+        <div className="signupBtnContainer">
+          <button>Sign Up</button>
+          <button onClick={() => setSignupModal(false)}>Cancel</button>
+        </div>
       </form>
     </div>
   );
