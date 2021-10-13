@@ -9,7 +9,7 @@ const { Business, Hours } = require("../../db/models");
 const router = express.Router();
 
 router.get(
-  "/:typeId",
+  "/type/:typeId",
   asyncHandler(async (req, res, next) => {
     const { typeId } = req.params;
     const business = await Business.findAll({
@@ -22,7 +22,7 @@ router.get(
 );
 
 router.get(
-  "/:typeId/:stateId",
+  "/type/:typeId/state/:stateId",
   asyncHandler(async (req, res, next) => {
     const { typeId, stateId } = req.params;
     const business = await Business.findAll({
@@ -35,7 +35,7 @@ router.get(
 );
 
 router.get(
-  "/:typeId/:stateId/:cityId",
+  "/type/:typeId/state/:stateId/city/:cityId",
   asyncHandler(async (req, res, next) => {
     const { typeId, stateId, cityId } = req.params;
     const business = await Business.findAll({

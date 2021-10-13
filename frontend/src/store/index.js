@@ -5,14 +5,16 @@ import sessionReducer from "./session";
 import businessReducer from "./business";
 import idReducer from "./id";
 import stateReducer from "./state";
-// import cityReducer from "./city";
+import cityReducer from "./city";
+import typeReducer from "./type";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   business: businessReducer,
   id: idReducer,
   state: stateReducer,
-  // city: cityReducer,
+  city: cityReducer,
+  type: typeReducer,
 });
 
 let enhancer;

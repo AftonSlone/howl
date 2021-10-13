@@ -1,24 +1,32 @@
 import "./Homepage.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateId } from "../../store/id";
+import { getStates } from "../../store/state";
+import { getCities } from "../../store/city";
+import { getTypes } from "../../store/type";
 import { useHistory } from "react-router-dom";
 
-import { getStates } from "../../store/state";
 import Navigation from "../Navigation";
 
 export default function Homepage() {
   const history = useHistory();
   const dispatch = useDispatch();
-  // const [typeId, setTypeId] = useState(null);
-  // const [stateId, setStateId] = useState(null);
-  // const [cityId, setCityid] = useState(null);
+  const [typeId, setTypeId] = useState(null);
+  const [stateId, setStateId] = useState(null);
+  const [cityId, setCityId] = useState(null);
   const states = useSelector((state) => state.state);
+  const cities = useSelector((state) => state.city);
+  const types = useSelector((state) => state.type);
 
   useEffect(() => {
-    console.log("Ping");
     dispatch(getStates());
+    dispatch(getTypes());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (stateId) dispatch(getCities(stateId));
+  }, [dispatch, stateId]);
 
   const handleSearch = () => {
     dispatch(updateId({ typeId: 1, stateId: 5, cityId: 1 }));
@@ -34,14 +42,39 @@ export default function Homepage() {
         <div className="homepageLogo">Img</div>
         <div className="homepageSearchWrapper">
           <button onClick={handleSearch}>Search</button>
-          <select name="typeId" id="typeId">
-            <option>Null</option>
+          <select
+            name="typeId"
+            id="typeId"
+            onChange={(e) => setTypeId(e.target.value)}
+          >
+            {types &&
+              Object.values(types).map((type) => (
+                <option key={type.id} value={type.id}>
+                  {type.name}
+                </option>
+              ))}
           </select>
-          <select name="stateId" id="stateId">
-            {Object.values(states).length &&
+          <select
+            name="stateId"
+            id="stateId"
+            onChange={(e) => setStateId(e.target.value)}
+          >
+            {states &&
               Object.values(states).map((state) => (
                 <option key={state.id} value={state.id}>
                   {state.name}
+                </option>
+              ))}
+          </select>
+          <select
+            name="cityId"
+            id="cityId"
+            onChange={(e) => setCityId(e.target.value)}
+          >
+            {cities &&
+              Object.values(cities).map((city) => (
+                <option key={city.id} value={city.id}>
+                  {city.name}
                 </option>
               ))}
           </select>

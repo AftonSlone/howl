@@ -12,7 +12,7 @@ export const getStates = () => async (dispatch) => {
   dispatch(setStates(states));
 };
 
-export default function idReducer(state = {}, action) {
+export default function stateReducer(state = null, action) {
   let newState;
   switch (action.type) {
     case SET_STATE:
