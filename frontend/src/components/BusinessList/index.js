@@ -5,20 +5,18 @@ import { search } from "../../store/business";
 export default function BusinessList() {
   const dispatch = useDispatch();
   const ids = useSelector((state) => state.id);
-  const data = useSelector((state) => state.business);
-  const business = Object.entries(data);
-  console.log(business);
+  const business = useSelector((state) => state.business);
 
   useEffect(() => {
     dispatch(search(ids));
   }, [dispatch]);
   return (
     <div>
-      {business.length &&
-        business.map((item) => {
+      {Object.values(business).length &&
+        Object.values(business).map((item) => {
           const loc = JSON.parse(item.loc);
           return (
-            <div>
+            <div key={item.id}>
               <p>{item.name}</p>
               <p>{item.info}</p>
               <p>{loc.lat}</p>
