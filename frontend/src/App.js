@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { restoreUser } from "./store/session";
 
 import Homepage from "./components/Homepage";
+import BusinessList from "./components/BusinessList";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,6 +19,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Homepage />
+        </Route>
+        <Route path="/results">
+          <BusinessList />
         </Route>
       </Switch>
     </>
