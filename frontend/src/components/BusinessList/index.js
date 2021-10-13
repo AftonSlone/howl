@@ -9,7 +9,7 @@ export default function BusinessList() {
 
   useEffect(() => {
     dispatch(search(ids));
-  }, [dispatch]);
+  }, [dispatch, ids]);
   return (
     <div>
       {Object.values(business).length &&

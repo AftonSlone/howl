@@ -3,12 +3,16 @@ import thunk from "redux-thunk";
 
 import sessionReducer from "./session";
 import businessReducer from "./business";
-import idReducer from "./id"
+import idReducer from "./id";
+import stateReducer from "./state";
+// import cityReducer from "./city";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   business: businessReducer,
   id: idReducer,
+  state: stateReducer,
+  // city: cityReducer,
 });
 
 let enhancer;

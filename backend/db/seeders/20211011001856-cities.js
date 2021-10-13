@@ -8,9 +8,11 @@ module.exports = {
       [
         {
           name: "San Francisco",
+          stateId: 5,
         },
         {
           name: "New York",
+          stateId: 32,
         },
       ],
       {}

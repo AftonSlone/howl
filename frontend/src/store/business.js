@@ -6,7 +6,11 @@ const setBusiness = (business) => ({ type: SET_BUSINESS, business });
 
 export const search = (ids) => async (dispatch) => {
   const { typeId, stateId, cityId } = ids;
-  const res = await csrfFetch(`/api/business/${typeId}/${stateId}/${cityId}`);
+  let url = "/api/business";
+  if (typeId) url += `/type/${typeId}`;
+  if (stateId) url += `/state/${stateId}`;
+  if (cityId) url += `/city/${cityId}`;
+  const res = await csrfFetch(url);
   const data = await res.json();
   dispatch(setBusiness(data));
 };

@@ -75,7 +75,7 @@ module.exports = {
           name: "Minnesota",
         },
         {
-          name: " Mississippi",
+          name: "Mississippi",
         },
         {
           name: "Missouri",
