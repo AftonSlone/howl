@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Hours.associate = function (models) {
-    Hours.hasOne(models.Business, { foreignKey: "businessId" });
+    Hours.belongsTo(models.Business, { foreignKey: "businessId" });
   };
   return Hours;
 };
