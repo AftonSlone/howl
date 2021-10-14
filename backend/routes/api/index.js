@@ -5,6 +5,7 @@ const businessRouter = require("./business.js");
 const stateRouter = require("./state");
 const cityRouter = require("./city");
 const businessTypeRouter = require("./businessType");
+const reviewRouter = require("./review");
 
 router.use("/session", sessionRouter);
 
@@ -17,5 +18,7 @@ router.use("/states", stateRouter);
 router.use("/cities", cityRouter);
 
 router.use("/business-types", businessTypeRouter);
+
+router.use("/reviews", reviewRouter);
 
 module.exports = router;
