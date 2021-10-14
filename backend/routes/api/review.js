@@ -35,4 +35,37 @@ router.post(
     res.json(review);
   })
 );
+
+router.delete(
+  "/:id",
+  requireAuth,
+  asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const { userId } = req.body;
+
+    const review = await Review.findByPk(id);
+    if (review.userId === userId) {
+      review.destroy();
+      res.status = 204;
+      res.json();
+    }
+  })
+);
+
+router.put(
+  "/:id",
+  requireAuth,
+  validateNewReview,
+  asyncHandler(async (req, res, next) => {
+    const { id } = req.params;
+    const { userId, rating, text } = req.body;
+    const review = await Review.findByPk(id);
+    if (review.userId === userId) {
+      review.update({ rating, text });
+      res.status = 200;
+      res.json();
+    }
+  })
+);
+
 module.exports = router;
