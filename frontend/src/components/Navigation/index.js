@@ -19,12 +19,12 @@ export default function Navigation() {
     if (e.target.className !== "fas fa-user") setClicked(false);
   };
 
-  const postNewBusiness = () => {
+  const postNewBusiness = async () => {
     const business = {
       name: "dog pile",
       typeId: 2,
       ownerId: 1,
-      loc: JSON.stringify({ lat: 34, lng: 55 }),
+      loc: "",
       cityId: 1,
       stateId: 5,
       street: "102 puppy",

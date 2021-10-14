@@ -8,7 +8,6 @@ export const getStates = () => async (dispatch) => {
     console.log('fetch')
   const res = await csrfFetch("/api/states");
   const states = await res.json();
-  console.log(states)
   dispatch(setStates(states));
 };
 

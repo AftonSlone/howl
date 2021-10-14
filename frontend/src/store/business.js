@@ -12,6 +12,27 @@ export const search = (ids) => async (dispatch) => {
   if (cityId) url += `/city/${cityId}`;
   const res = await csrfFetch(url);
   const data = await res.json();
+
+  const sortBusiness = (businesses) => {
+    const reviewScore = (business) => {
+      let count = 0;
+      business.Reviews.forEach((review) => {
+        count += review.rating;
+      });
+      return count / business.Reviews.length;
+    };
+
+    const helperFunc = (a, b) => {
+      if (reviewScore(a) > reviewScore(b)) return -1;
+      if (reviewScore(a) < reviewScore(b)) return 1;
+      return 0;
+    };
+
+    businesses.sort(helperFunc);
+  };
+
+  sortBusiness(data);
+
   dispatch(setBusiness(data));
 };
 
@@ -25,7 +46,7 @@ export const newBusiness = (business) => async (dispatch) => {
   dispatch(setBusiness(data));
 };
 
-export default function businessReducer(state = {}, action) {
+export default function businessReducer(state = null, action) {
   let newState;
   switch (action.type) {
     case SET_BUSINESS:
