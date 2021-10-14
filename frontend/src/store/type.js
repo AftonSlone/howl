@@ -1,6 +1,6 @@
 import { csrfFetch } from "./csrf";
 
-const SET_TYPE = "city/setCity";
+const SET_TYPE = "type/setTypes";
 
 const setTypes = (types) => ({ type: SET_TYPE, types });
 

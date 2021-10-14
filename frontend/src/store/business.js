@@ -15,6 +15,16 @@ export const search = (ids) => async (dispatch) => {
   dispatch(setBusiness(data));
 };
 
+export const newBusiness = (business) => async (dispatch) => {
+  const res = await csrfFetch("/api/business", {
+    method: "POST",
+    body: JSON.stringify(business),
+  });
+
+  const data = await res.json();
+  dispatch(setBusiness(data));
+};
+
 export default function businessReducer(state = {}, action) {
   let newState;
   switch (action.type) {

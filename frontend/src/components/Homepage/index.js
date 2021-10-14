@@ -29,7 +29,7 @@ export default function Homepage() {
   }, [dispatch, stateId]);
 
   const handleSearch = () => {
-    dispatch(updateId({ typeId: 1, stateId: 5, cityId: 1 }));
+    dispatch(updateId({ typeId, stateId, cityId }));
     history.push("/results");
   };
 
@@ -47,6 +47,7 @@ export default function Homepage() {
             id="typeId"
             onChange={(e) => setTypeId(e.target.value)}
           >
+            <option>-- Business Type --</option>
             {types &&
               Object.values(types).map((type) => (
                 <option key={type.id} value={type.id}>
@@ -59,6 +60,7 @@ export default function Homepage() {
             id="stateId"
             onChange={(e) => setStateId(e.target.value)}
           >
+            <option>-- State --</option>
             {states &&
               Object.values(states).map((state) => (
                 <option key={state.id} value={state.id}>
@@ -71,6 +73,7 @@ export default function Homepage() {
             id="cityId"
             onChange={(e) => setCityId(e.target.value)}
           >
+            <option>-- City --</option>
             {cities &&
               Object.values(cities).map((city) => (
                 <option key={city.id} value={city.id}>

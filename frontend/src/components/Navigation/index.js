@@ -2,6 +2,7 @@ import "./Navigation.css";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/session";
+import { newBusiness } from "../../store/business";
 import ProfileButton from "./ProfileButton";
 import LoginFormPage from "./LoginFormPage";
 import SignupFormPage from "./SignupFormPage";
@@ -18,6 +19,20 @@ export default function Navigation() {
     if (e.target.className !== "fas fa-user") setClicked(false);
   };
 
+  const postNewBusiness = () => {
+    const business = {
+      name: "dog pile",
+      typeId: 2,
+      ownerId: 1,
+      loc: JSON.stringify({ lat: 34, lng: 55 }),
+      cityId: 1,
+      stateId: 5,
+      street: "102 puppy",
+      info: "This is nothing but a test",
+    };
+    dispatch(newBusiness(business));
+  };
+
   const handleClick = () => {
     setClicked(!clicked);
   };
@@ -30,7 +45,10 @@ export default function Navigation() {
         </div>
       )}
       {!user && (
-        <div className="navBtn navBtnSignup" onClick={() => setSignupModal(true)}>
+        <div
+          className="navBtn navBtnSignup"
+          onClick={() => setSignupModal(true)}
+        >
           Signup
         </div>
       )}
@@ -47,6 +65,9 @@ export default function Navigation() {
       {clicked && <Menu user={user} />}
       {loginModal && <LoginFormPage setLoginModal={setLoginModal} />}
       {signupModal && <SignupFormPage setSignupModal={setSignupModal} />}
+      {user && user.businessAccount ? (
+        <button onClick={postNewBusiness}>Post New Business</button>
+      ) : null}
       {user && <ProfileButton handleClick={handleClick} />}
     </nav>
   );
