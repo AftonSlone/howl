@@ -50,7 +50,7 @@ export default function businessReducer(state = null, action) {
   let newState;
   switch (action.type) {
     case SET_BUSINESS:
-      newState = { ...state, ...action.business };
+      newState = { ...state, ...action.business};
       return newState;
     default:
       return state;

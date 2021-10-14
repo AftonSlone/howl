@@ -6,7 +6,7 @@ import { search } from "../../store/business";
 export default function BusinessList() {
   const dispatch = useDispatch();
   const ids = useSelector((state) => state.id);
-  let business = useSelector((state) => state.business);
+  const business = useSelector((state) => state.business);
 
   const reviewScore = (business) => {
     let count = 0;
@@ -27,7 +27,8 @@ export default function BusinessList() {
             <div key={item.id}>
               <Link to={`/business/${item.id}`}>{item.name}</Link>
               <p>
-                {reviewScore(item)} : {item.Reviews.length}
+                {reviewScore(item) ? reviewScore(item) : 0} :{" "}
+                {item.Reviews.length}
               </p>
             </div>
           );

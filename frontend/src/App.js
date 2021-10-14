@@ -6,6 +6,7 @@ import { restoreUser } from "./store/session";
 
 import Homepage from "./components/Homepage";
 import BusinessList from "./components/BusinessList";
+import Business from "./components/Business";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route path="/results">
           <BusinessList />
+        </Route>
+        <Route path="/business/:businessId">
+          <Business />
         </Route>
       </Switch>
     </>
