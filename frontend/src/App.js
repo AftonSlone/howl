@@ -8,6 +8,7 @@ import Homepage from "./components/Homepage";
 import BusinessList from "./components/BusinessList";
 import Business from "./components/Business";
 import Profile from "./components/Profile";
+import LoginFormPage from "./components/Navigation/LoginFormPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,9 @@ function App() {
       <Switch>
         <Route exact path="/">
           <Homepage />
+        </Route>
+        <Route path="/login">
+          <LoginFormPage />
         </Route>
         <Route path="/business/type/:typeId/state/:stateId/ctiy/:cityId">
           <BusinessList />

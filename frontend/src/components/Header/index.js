@@ -1,12 +1,13 @@
-import "./Navigation.css";
+import "./Header.css";
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/session";
 import { newBusiness } from "../../store/business";
-import ProfileButton from "./ProfileButton";
-import LoginFormPage from "./LoginFormPage";
-import SignupFormPage from "./SignupFormPage";
-import Menu from "./Menu";
+import ProfileButton from "../Navigation/ProfileButton";
+import LoginFormPage from "../Navigation/LoginFormPage";
+import SignupFormPage from "../Navigation/SignupFormPage";
+import Menu from "../Navigation/Menu";
 
 export default function Navigation() {
   const dispatch = useDispatch();
@@ -37,16 +38,21 @@ export default function Navigation() {
     setClicked(!clicked);
   };
   return (
-    <nav className="navContainer">
-      <div className="NavBtnContainer">
+    <nav className="HeaderContainer">
+      <div>
+        <NavLink to="/">
+          <img className="HeaderLogo" src="https://i.imgur.com/SzFAJOX.png" />
+        </NavLink>
+      </div>
+      <div className="HeaderBtnContainer">
         {!user && (
-          <div className="navBtn" onClick={() => setLoginModal(true)}>
+          <div className="HeaderBtn" onClick={() => setLoginModal(true)}>
             Login
           </div>
         )}
         {!user && (
           <div
-            className="navBtn navBtnSignup"
+            className="HeaderBtn HeaderBtnSignup"
             onClick={() => setSignupModal(true)}
           >
             Signup
@@ -54,7 +60,7 @@ export default function Navigation() {
         )}
         {!user && (
           <div
-            className="navBtn navBtnSignup"
+            className="HeaderBtn HeaderBtnSignup"
             onClick={() => {
               dispatch(login({ credential: "demo", password: "password" }));
             }}
@@ -63,8 +69,8 @@ export default function Navigation() {
           </div>
         )}
         {user && user.businessAccount ? (
-          <button className="navBtn navBtnSignup" onClick={postNewBusiness}>
-            New Business
+          <button className="HeaderBtn" onClick={postNewBusiness}>
+              New Business
           </button>
         ) : null}
         {user && <ProfileButton handleClick={handleClick} />}

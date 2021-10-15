@@ -1,74 +1,49 @@
-.navContainer {
+.HeaderContainer {
   display: flex;
   flex-direction: row;
   width: 100%;
   height: 10vh;
-  justify-content: right;
+  justify-content: space-between;
   align-items: center;
   background-color: rgba(0, 0, 0, 0);
 }
 
-a {
-  text-decoration: none;
-}
-
-.menuContainer {
+/* .menuContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 25%;
+  width: 10%;
   position: absolute;
-  background-color: white;
-  top: 80px;
+  background-color: crimson;
+  top: 68px;
   right: 10px;
-  border-radius: 10px;
-  border: 2px solid crimson;
-}
-
-/* .menuContainer > a {
-  margin: 10px;
 } */
-
-.menuContainer > button {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.menuContainer > div {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 25px;
-  color: crimson;
-}
-
 
 .logoutBtnContainer {
   z-index: 2;
 }
 
 .profileButton {
-  font-size: 30px;
+  font-size: 35px;
   width: 2%;
-  height: 40px;
+  height: 30%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   margin-right: 25px;
-  color: white
+  color: crimson;
 }
 
-.profileButton:hover {
-  color: rgba(0, 0, 0, 0.582);
-}
 
-.navLogo {
+
+.HeaderLogo {
   width: 100%;
 }
 
-.navBtn {
+.HeaderBtn {
   box-sizing: border-box;
   display: flex;
   justify-content: center;
@@ -78,25 +53,22 @@ a {
   width: 40%;
   height: 50%;
   font-size: 20px;
-  background-color: rgba(255, 255, 255, 0);
-  color: white;
-}
-
-.navBtn:hover {
-  border-bottom: 3px solid white;
+  color: crimson;
+  border: 2px solid crimson;
+  background-color: white;
   cursor: pointer;
 }
 
-.navBtnSignup {
-  border: 3px solid white;
+.HeaderBtnSignup {
+  background-color: red;
+  color: white;
 }
 
-.navBtnSignup:hover {
-  background-color: white;
-  color: rgb(0, 0, 0);
+.HeaderLogo {
+  width: 90px;
 }
 
-.NavBtnContainer {
+.HeaderBtnContainer {
   width: 20%;
   height: 100%;
   display: flex;

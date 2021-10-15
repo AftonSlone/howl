@@ -9,9 +9,9 @@ export default function Menu({ user }) {
   };
   return (
     <div className="menuContainer">
-      <div>{user.username}</div>
-      <Link to={`/user/${user.id}`}>Manage Businesses</Link>
-      <button onClick={handleLogout}>Logout</button>
+      <div className="username">{user.username}</div>
+      <Link className="HeaderBtn" to={`/user/${user.id}`}>Manage Businesses</Link>
+      <button className="HeaderBtn" onClick={handleLogout}>Logout</button>
     </div>
   );
 }

@@ -8,7 +8,7 @@ import {
   editReviews,
 } from "../../store/business";
 
-import Navigation from "../Navigation";
+import Header from "../Header"
 
 export default function Business() {
   const dispatch = useDispatch();
@@ -55,21 +55,21 @@ export default function Business() {
     await dispatch(fetchBusiness(businessId));
   }, [dispatch, businessId]);
 
-  if (!currentBusiness || !user) return "Loading...";
+  if (!currentBusiness) return "Loading...";
   return (
     <div>
-      <Navigation />
+      <Header />
       {currentBusiness.name}
       {currentBusiness.Reviews.map((review) => (
         <div key={review.id}>
           <h2>{review.text}</h2>
           <p>{review.rating}</p>
-          {user.id === review.userId ? (
+          {user && user.id === review.userId ? (
             <button id={review.id} onClick={editReview}>
               Edit
             </button>
           ) : null}
-          {user.id === review.userId ? (
+          {user && user.id === review.userId ? (
             <button id={review.id} onClick={deleteReview}>
               Delete
             </button>
