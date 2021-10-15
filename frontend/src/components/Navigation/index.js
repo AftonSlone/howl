@@ -72,10 +72,10 @@ export default function Navigation() {
       </div>
       {clicked && <Menu user={user} />}
       {loginModal && (
-        <Modal loginModal={loginModal} setLoginModal={setLoginModal} />
+        <Modal component={LoginFormPage} setLoginModal={setLoginModal} />
       )}
       {signupModal && (
-        <Modal signupModal={signupModal} setSignupModal={setSignupModal} />
+        <Modal component={SignupFormPage} setSignupModal={setSignupModal} />
       )}
     </nav>
   );

@@ -61,6 +61,6 @@ input[type="checkbox"] {
   width: 60%;
 }
 
-.signupForm input:hover {
+.signupForm input:focus {
   outline: none;
 }
