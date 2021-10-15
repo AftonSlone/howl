@@ -41,12 +41,36 @@ const validateNewBusiness = [
 ];
 
 router.get(
+  "/:businessId",
+  asyncHandler(async (req, res, next) => {
+    const { businessId } = req.params;
+    const business = await Business.findByPk(businessId, {
+      include: [Hours, Review],
+    });
+    res.json(business);
+  })
+);
+
+router.get(
+  "/user/:ownerId",
+  asyncHandler(async (req, res, next) => {
+    const { ownerId } = req.params;
+    const business = await Business.findAll({
+      where: { ownerId },
+      include: [Hours, Review],
+    });
+
+    res.json(business);
+  })
+);
+
+router.get(
   "/type/:typeId",
   asyncHandler(async (req, res, next) => {
     const { typeId } = req.params;
     const business = await Business.findAll({
       where: { typeId },
-      include: [Hours],
+      include: [Hours, Review],
     });
 
     res.json(business);
@@ -59,7 +83,7 @@ router.get(
     const { typeId, stateId } = req.params;
     const business = await Business.findAll({
       where: { typeId, stateId },
-      include: [Hours],
+      include: [Hours, Review],
     });
 
     res.json(business);
@@ -72,6 +96,32 @@ router.get(
     const { typeId, stateId, cityId } = req.params;
     const business = await Business.findAll({
       where: { typeId, stateId, cityId },
+      include: [Hours, Review],
+    });
+
+    res.json(business);
+  })
+);
+
+router.get(
+  "/state/:stateId/city/:cityId",
+  asyncHandler(async (req, res, next) => {
+    const { stateId, cityId } = req.params;
+    const business = await Business.findAll({
+      where: { stateId, cityId },
+      include: [Hours, Review],
+    });
+
+    res.json(business);
+  })
+);
+
+router.get(
+  "/state/:stateId",
+  asyncHandler(async (req, res, next) => {
+    const { stateId } = req.params;
+    const business = await Business.findAll({
+      where: { stateId },
       include: [Hours, Review],
     });
 

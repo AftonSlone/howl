@@ -9,7 +9,7 @@ export const updateId = (ids) => async (dispatch) => {
 };
 
 export default function idReducer(
-  state = { typeId: null, stateId: null, cityId: null },
+  state = null,
   action
 ) {
   let newState;

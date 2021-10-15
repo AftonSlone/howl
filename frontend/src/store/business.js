@@ -1,12 +1,20 @@
 import { csrfFetch } from "./csrf";
 
 const SET_BUSINESS = "business/setBusiness";
+const SET_SELECTED_BUSINESS = "business/setSelectedBusiness";
 
 const setBusiness = (business) => ({ type: SET_BUSINESS, business });
 
+const setSelectedBusiness = (business) => ({
+  type: SET_SELECTED_BUSINESS,
+  business,
+});
+
 export const search = (ids) => async (dispatch) => {
-  const { typeId, stateId, cityId } = ids;
+  const { typeId, stateId, cityId, ownerId, businessId } = ids;
   let url = "/api/business";
+  if (businessId) url += `/${businessId}`;
+  if (ownerId) url += `/user/${ownerId}`;
   if (typeId) url += `/type/${typeId}`;
   if (stateId) url += `/state/${stateId}`;
   if (cityId) url += `/city/${cityId}`;
@@ -31,9 +39,15 @@ export const search = (ids) => async (dispatch) => {
     businesses.sort(helperFunc);
   };
 
-  sortBusiness(data);
+  if (data.length > 1) sortBusiness(data);
 
   dispatch(setBusiness(data));
+};
+
+export const fetchBusiness = (businessId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/business/${businessId}`);
+  const data = await res.json();
+  dispatch(setSelectedBusiness(data));
 };
 
 export const newBusiness = (business) => async (dispatch) => {
@@ -46,11 +60,17 @@ export const newBusiness = (business) => async (dispatch) => {
   dispatch(setBusiness(data));
 };
 
-export default function businessReducer(state = null, action) {
+export default function businessReducer(
+  state = { businesses: [], selectedBusiness: null },
+  action
+) {
   let newState;
   switch (action.type) {
     case SET_BUSINESS:
-      newState = { ...state, ...action.business};
+      newState = { ...state, businesses: action.business };
+      return newState;
+    case SET_SELECTED_BUSINESS:
+      newState = { ...state, selectedBusiness: action.business };
       return newState;
     default:
       return state;

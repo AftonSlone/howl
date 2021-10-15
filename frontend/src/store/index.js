@@ -11,7 +11,7 @@ import typeReducer from "./type";
 const rootReducer = combineReducers({
   session: sessionReducer,
   business: businessReducer,
-  id: idReducer,
+  // id: idReducer,
   state: stateReducer,
   city: cityReducer,
   type: typeReducer,

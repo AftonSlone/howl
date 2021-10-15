@@ -2,31 +2,39 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { csrfFetch } from "../../store/csrf";
-import { search } from "../../store/business";
+import { search, fetchBusiness } from "../../store/business";
+
+import Navigation from "../Navigation";
 
 export default function Business() {
   const dispatch = useDispatch();
   const { businessId } = useParams();
-  const business = useSelector((state) => state.business);
+  const currentBusiness = useSelector(
+    (state) => state.business.selectedBusiness
+  );
+  console.log(currentBusiness);
   const user = useSelector((state) => state.session.user);
   const ids = useSelector((state) => state.id);
-  const [currentBusiness, setCurrentBusiness] = useState(null);
   const [rating, setRating] = useState(5);
   const [text, setText] = useState("dog122");
   const [errors, setErrors] = useState(null);
 
   const editReview = async (e) => {
     const res = await csrfFetch(`/api/reviews/${e.target.id}`, {
-        method: "PUT",
-        body: JSON.stringify({
-            userId: user.id,
-            rating,
-            text
-        }),
-      });
+      method: "PUT",
+      body: JSON.stringify({
+        userId: user.id,
+        rating,
+        text,
+      }),
+    });
 
+    if (Object.values(ids).length) {
       dispatch(search(ids));
-      setErrors(res.errors);
+    } else {
+      dispatch(search({ businessId }));
+    }
+    setErrors(res.errors);
   };
 
   const deleteReview = async (e) => {
@@ -35,7 +43,11 @@ export default function Business() {
       body: JSON.stringify({ userId: user.id }),
     });
 
-    dispatch(search(ids));
+    if (Object.values(ids).length) {
+      dispatch(search(ids));
+    } else {
+      dispatch(search({ businessId }));
+    }
     setErrors(res.errors);
   };
 
@@ -50,32 +62,31 @@ export default function Business() {
       }),
     });
 
-    dispatch(search(ids));
+    if (Object.values(ids).length) {
+      dispatch(search(ids));
+    } else {
+      dispatch(search({ businessId }));
+    }
     setErrors(res.errors);
   };
 
-  useEffect(() => {
-    const findBusiness = () => {
-      for (let key in business) {
-        let value = business[key];
-        if (value.id === +businessId) setCurrentBusiness(value);
-      }
-    };
+  useEffect(async () => {
+    await dispatch(fetchBusiness(businessId));
+  }, [dispatch, businessId]);
 
-    if (business) findBusiness();
-  }, [business, businessId]);
-
+  if(!currentBusiness || !user) return "Loading..."
   return (
     <div>
-      <h1>Hello</h1>
-      {currentBusiness && currentBusiness.name}
-      {currentBusiness &&
-        currentBusiness.Reviews.map((review) => (
+      <Navigation />
+      {currentBusiness.name}
+      {currentBusiness.Reviews.map((review) => (
           <div key={review.id}>
             <h2>{review.text}</h2>
             <p>{review.rating}</p>
             {user.id === review.userId ? (
-              <button id={review.id} onClick={editReview}>Edit</button>
+              <button id={review.id} onClick={editReview}>
+                Edit
+              </button>
             ) : null}
             {user.id === review.userId ? (
               <button id={review.id} onClick={deleteReview}>

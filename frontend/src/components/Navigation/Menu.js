@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { logout } from "../../store/session";
 
 export default function Menu({ user }) {
@@ -9,6 +10,7 @@ export default function Menu({ user }) {
   return (
     <div className="menuContainer">
       <div>{user.username}</div>
+      <Link to="/profile">Manage Businesses</Link>
       <button onClick={handleLogout}>Logout</button>
     </div>
   );

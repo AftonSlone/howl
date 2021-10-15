@@ -30,7 +30,11 @@ export default function Homepage() {
 
   const handleSearch = () => {
     dispatch(updateId({ typeId, stateId, cityId }));
-    history.push("/results");
+    let url = "/business";
+    if (typeId) url += `/type/${typeId}`;
+    if (stateId) url += `/state/${stateId}`;
+    if (cityId) url += `/city/${cityId}`;
+    history.push(url);
   };
 
   return (
