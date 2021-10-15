@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { search } from "../../store/business";
+import { fetchBusinesses } from "../../store/business";
 
 export default function BusinessList() {
   const dispatch = useDispatch();
-  const ids = useParams()
+  const ids = useParams();
   const business = useSelector((state) => state.business.businesses);
 
   const reviewScore = (business) => {
@@ -17,8 +17,7 @@ export default function BusinessList() {
   };
 
   useEffect(() => {
-    console.log(ids)
-    dispatch(search(ids));
+    dispatch(fetchBusinesses(ids));
   }, [dispatch, ids]);
   return (
     <div>

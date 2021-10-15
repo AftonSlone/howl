@@ -40,7 +40,7 @@ function App() {
         <Route path="/business/:businessId">
           <Business />
         </Route>
-        <Route path="/profile">
+        <Route path="/user/:userId">
           <Profile />
         </Route>
       </Switch>

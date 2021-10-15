@@ -10,7 +10,30 @@ const setSelectedBusiness = (business) => ({
   business,
 });
 
-export const search = (ids) => async (dispatch) => {
+export const editReviews = (review) => async (dispatch) => {
+  const { reviewId, userId, rating, text } = review;
+  const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+    method: "PUT",
+    body: JSON.stringify({userId, rating, text}),
+  });
+};
+
+export const postReviews = (review) => async (dispatch) => {
+  const res = await csrfFetch("/api/reviews", {
+    method: "POST",
+    body: JSON.stringify(review),
+  });
+};
+
+export const deleteReviews = (ids) => async (dispatch) => {
+  const { id, userId } = ids;
+  const res = await csrfFetch(`/api/reviews/${id}`, {
+    method: "DELETE",
+    body: JSON.stringify({ userId }),
+  });
+};
+
+export const fetchBusinesses = (ids) => async (dispatch) => {
   const { typeId, stateId, cityId, ownerId, businessId } = ids;
   let url = "/api/business";
   if (businessId) url += `/${businessId}`;
