@@ -21,34 +21,32 @@ export default function LoginFormPage({ setLoginModal }) {
   };
 
   return (
-    <div className="loginFormWrapper">
-      <form onSubmit={handleSubmit} className="loginForm">
-        <ul>
-          {errors.map((err) => (
-            <li key={err}>{err}</li>
-          ))}
-        </ul>
-        <label>
-          Username or Email
-          <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="text"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <div className='loginBtnContainer'>
+    <form onSubmit={handleSubmit} className="loginForm">
+      <ul>
+        {errors.map((err) => (
+          <li key={err}>{err}</li>
+        ))}
+      </ul>
+      <label>
+        Username or Email
+        <input
+          type="text"
+          value={credential}
+          onChange={(e) => setCredential(e.target.value)}
+        />
+      </label>
+      <label>
+        Password
+        <input
+          type="text"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </label>
+      <div className="loginBtnContainer">
         <button>Log In</button>
         <button onClick={() => setLoginModal(false)}>Cancel</button>
-        </div>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 }

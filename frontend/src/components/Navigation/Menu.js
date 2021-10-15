@@ -10,8 +10,8 @@ export default function Menu({ user }) {
   return (
     <div className="menuContainer">
       <div className="username">{user.username}</div>
-      <Link className="HeaderBtn" to={`/user/${user.id}`}>Manage Businesses</Link>
-      <button className="HeaderBtn" onClick={handleLogout}>Logout</button>
+      <Link className="HeaderBtnSignup" to={`/user/${user.id}`}>Manage Businesses</Link>
+      <button className="HeaderBtnSignup" onClick={handleLogout}>Logout</button>
     </div>
   );
 }

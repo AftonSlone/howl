@@ -6,6 +6,7 @@ import { newBusiness } from "../../store/business";
 import ProfileButton from "./ProfileButton";
 import LoginFormPage from "./LoginFormPage";
 import SignupFormPage from "./SignupFormPage";
+import Modal from "../Modal";
 import Menu from "./Menu";
 
 export default function Navigation() {
@@ -70,8 +71,12 @@ export default function Navigation() {
         {user && <ProfileButton handleClick={handleClick} />}
       </div>
       {clicked && <Menu user={user} />}
-      {loginModal && <LoginFormPage setLoginModal={setLoginModal} />}
-      {signupModal && <SignupFormPage setSignupModal={setSignupModal} />}
+      {loginModal && (
+        <Modal loginModal={loginModal} setLoginModal={setLoginModal} />
+      )}
+      {signupModal && (
+        <Modal signupModal={signupModal} setSignupModal={setSignupModal} />
+      )}
     </nav>
   );
 }

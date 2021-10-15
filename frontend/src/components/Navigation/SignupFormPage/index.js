@@ -32,73 +32,71 @@ export default function SignupFormPage({ setSignupModal }) {
     }
   };
   return (
-    <div className="signupFormWrapper">
-      <form onSubmit={handleSubmit} className="signupForm">
-        <ul>
-          {errors.map((err) => (
-            <li key={err}>{err}</li>
-          ))}
-        </ul>
-        <label>
-          Username
+    <form onSubmit={handleSubmit} className="signupForm">
+      <ul>
+        {errors.map((err) => (
+          <li key={err}>{err}</li>
+        ))}
+      </ul>
+
+      <input
+        type="text"
+        value={username}
+        placeholder="Username"
+        onChange={(e) => setUsername(e.target.value)}
+      />
+
+      <input
+        type="email"
+        value={email}
+        placeholder="Email"
+        onChange={(e) => setEmail(e.target.value)}
+      />
+
+      <input
+        type="text"
+        value={password}
+        placeholder="Password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <input
+        type="text"
+        value={confirmPassword}
+        placeholder="Confirm Password"
+        onChange={(e) => setConfirmPassword(e.target.value)}
+      />
+      <p>Is this a Business Account?</p>
+      <div className="signupCheckboxContainer">
+        <span>
+          Yes
           <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="checkbox"
+            name="businessAccount"
+            value={true}
+            checked={businessAccount === true}
+            onChange={(e) => setBusinessAccount(true)}
           />
-        </label>
-        <label>
-          Email
+        </span>
+        <span>
+          No
           <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="checkbox"
+            name="businessAccount"
+            value={false}
+            checked={businessAccount === false}
+            onChange={(e) => setBusinessAccount(false)}
           />
-        </label>
-        <label>
-          Password
-          <input
-            type="text"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <label>
-          Confirm Password
-          <input
-            type="text"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </label>
-        <p>Is this a Business Account?</p>
-        <div className="signupCheckboxContainer">
-          <span>
-            Yes
-            <input
-              type="checkbox"
-              name="businessAccount"
-              value={true}
-              checked={businessAccount === true}
-              onChange={(e) => setBusinessAccount(true)}
-            />
-          </span>
-          <span>
-            No
-            <input
-              type="checkbox"
-              name="businessAccount"
-              value={false}
-              checked={businessAccount === false}
-              onChange={(e) => setBusinessAccount(false)}
-            />
-          </span>
-        </div>
-        <div className="signupBtnContainer">
-          <button>Sign Up</button>
-          <button onClick={() => setSignupModal(false)}>Cancel</button>
-        </div>
-      </form>
-    </div>
+        </span>
+      </div>
+      <div className="signupBtnContainer">
+        <button className="HeaderBtnSignup">Sign Up</button>
+        <button
+          className="HeaderBtnSignup"
+          onClick={() => setSignupModal(false)}
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
   );
 }

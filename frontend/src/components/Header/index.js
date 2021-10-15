@@ -52,7 +52,7 @@ export default function Navigation() {
         )}
         {!user && (
           <div
-            className="HeaderBtn HeaderBtnSignup"
+            className="HeaderBtnSignup"
             onClick={() => setSignupModal(true)}
           >
             Signup
@@ -60,7 +60,7 @@ export default function Navigation() {
         )}
         {!user && (
           <div
-            className="HeaderBtn HeaderBtnSignup"
+            className="HeaderBtnSignup"
             onClick={() => {
               dispatch(login({ credential: "demo", password: "password" }));
             }}
@@ -69,7 +69,7 @@ export default function Navigation() {
           </div>
         )}
         {user && user.businessAccount ? (
-          <button className="HeaderBtn" onClick={postNewBusiness}>
+          <button className="HeaderBtnSignup" onClick={postNewBusiness}>
               New Business
           </button>
         ) : null}

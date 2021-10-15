@@ -8,7 +8,7 @@ import {
   editReviews,
 } from "../../store/business";
 
-import Header from "../Header"
+import Header from "../Header";
 
 export default function Business() {
   const dispatch = useDispatch();
@@ -65,18 +65,28 @@ export default function Business() {
           <h2>{review.text}</h2>
           <p>{review.rating}</p>
           {user && user.id === review.userId ? (
-            <button id={review.id} onClick={editReview}>
+            <button
+              className="HeaderBtnSignup"
+              id={review.id}
+              onClick={editReview}
+            >
               Edit
             </button>
           ) : null}
           {user && user.id === review.userId ? (
-            <button id={review.id} onClick={deleteReview}>
+            <button
+              className="HeaderBtnSignup"
+              id={review.id}
+              onClick={deleteReview}
+            >
               Delete
             </button>
           ) : null}
         </div>
       ))}
-      <button onClick={postReview}>New Review</button>
+      <button className="HeaderBtnSignup" onClick={postReview}>
+        New Review
+      </button>
     </div>
   );
 }

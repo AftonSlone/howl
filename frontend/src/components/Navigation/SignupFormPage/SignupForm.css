@@ -1,5 +1,5 @@
 input[type="email"] {
-  width: 250px;
+  width: 60%;
   display: block;
   margin: 5px;
   padding: 5px;
@@ -9,6 +9,7 @@ input[type="email"] {
 
 input[type="checkbox"] {
   padding: 10px;
+  color: crimson;
 }
 
 .signupBtnContainer {
@@ -53,4 +54,13 @@ input[type="checkbox"] {
   box-sizing: border-box;
   padding-top: 10px;
   padding-bottom: 30px;
+}
+
+.signupForm input {
+  border-bottom: 2px solid crimson;
+  width: 60%;
+}
+
+.signupForm input:hover {
+  outline: none;
 }
