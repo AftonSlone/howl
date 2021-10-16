@@ -41,11 +41,10 @@ export default function Homepage() {
     <div className="homepage">
       <div className="navWrapper">
         <Navigation />
-      </div>
-      <div className="homepageContent">
-        <div className="homepageLogo">Img</div>
+        <div className="homepageLogo">
+          <img className="HeaderLogo1" src="https://i.imgur.com/SzFAJOX.png" />
+        </div>
         <div className="homepageSearchWrapper">
-
           <select
             name="typeId"
             id="typeId"
@@ -92,6 +91,8 @@ export default function Homepage() {
             <i class="fas fa-search"></i>
           </button>
         </div>
+      </div>
+      <div className="homepageContent">
         <div className="homepageLinks">Links</div>
       </div>
     </div>
