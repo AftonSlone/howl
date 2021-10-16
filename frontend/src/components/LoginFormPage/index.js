@@ -1,7 +1,7 @@
 import "./LoginForm.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../../store/session";
+import { login } from "../../store/session";
 import { Redirect } from "react-router";
 
 export default function LoginFormPage({ setLoginModal }) {
@@ -17,7 +17,11 @@ export default function LoginFormPage({ setLoginModal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await dispatch(login({ credential, password }));
-    setErrors(res.errors);
+    if (res.errors) {
+      setErrors(res.errors);
+    } else {
+      setLoginModal(false);
+    }
   };
 
   return (

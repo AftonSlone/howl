@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/session";
 import { newBusiness } from "../../store/business";
 import ProfileButton from "../Navigation/ProfileButton";
-import LoginFormPage from "../Navigation/LoginFormPage";
-import SignupFormPage from "../Navigation/SignupFormPage";
+import LoginFormPage from "../LoginFormPage";
+import SignupFormPage from "../SignupFormPage";
 import Menu from "../Navigation/Menu";
 
 export default function Navigation() {

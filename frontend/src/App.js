@@ -8,7 +8,7 @@ import Homepage from "./components/Homepage";
 import BusinessList from "./components/BusinessList";
 import Business from "./components/Business";
 import Profile from "./components/Profile";
-import LoginFormPage from "./components/Navigation/LoginFormPage";
+import LoginFormPage from "./components/LoginFormPage";
 
 function App() {
   const dispatch = useDispatch();

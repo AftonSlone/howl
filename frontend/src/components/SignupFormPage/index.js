@@ -1,7 +1,7 @@
 import "./SignupForm.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signup } from "../../../store/session";
+import { signup } from "../../store/session";
 import { Redirect } from "react-router";
 
 export default function SignupFormPage({ setSignupModal }) {
@@ -15,27 +15,30 @@ export default function SignupFormPage({ setSignupModal }) {
   const [errors, setErrors] = useState([]);
   const [businessAccount, setBusinessAccount] = useState(false);
 
-  if (user) return <Redirect to="/" />;
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
     if (password === confirmPassword) {
-      dispatch(signup({ username, email, password, businessAccount })).catch(
-        async (res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-        }
+      const res = await dispatch(
+        signup({ username, email, password, businessAccount })
       );
+      if (res.errors) {
+        setErrors(res.errors);
+      }
+      if (!res.errors) {
+        setSignupModal(false);
+      }
     } else {
       setErrors(["Passwords must match"]);
     }
   };
   return (
     <form onSubmit={handleSubmit} className="signupForm">
-      <ul>
+      <ul className="errorsContainer">
         {errors.map((err) => (
-          <li key={err}>{err}</li>
+          <li className="error" key={err}>
+            {err}
+          </li>
         ))}
       </ul>
 
@@ -54,21 +57,21 @@ export default function SignupFormPage({ setSignupModal }) {
       />
 
       <input
-        type="text"
+        type="password"
         value={password}
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
       />
       <input
-        type="text"
+        type="password"
         value={confirmPassword}
         placeholder="Confirm Password"
         onChange={(e) => setConfirmPassword(e.target.value)}
       />
       <p>Is this a Business Account?</p>
       <div className="signupCheckboxContainer">
-        <span>
-          Yes
+        <div className="yes">
+          <p>Yes</p>
           <input
             type="checkbox"
             name="businessAccount"
@@ -76,9 +79,9 @@ export default function SignupFormPage({ setSignupModal }) {
             checked={businessAccount === true}
             onChange={(e) => setBusinessAccount(true)}
           />
-        </span>
-        <span>
-          No
+        </div>
+        <div className="no">
+          <p>No</p>
           <input
             type="checkbox"
             name="businessAccount"
@@ -86,7 +89,7 @@ export default function SignupFormPage({ setSignupModal }) {
             checked={businessAccount === false}
             onChange={(e) => setBusinessAccount(false)}
           />
-        </span>
+        </div>
       </div>
       <div className="signupBtnContainer">
         <button className="HeaderBtnSignup">Sign Up</button>

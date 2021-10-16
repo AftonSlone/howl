@@ -45,13 +45,14 @@ export default function Homepage() {
       <div className="homepageContent">
         <div className="homepageLogo">Img</div>
         <div className="homepageSearchWrapper">
-          <button onClick={handleSearch}>Search</button>
+
           <select
             name="typeId"
             id="typeId"
+            className="businessTypeBtn left"
             onChange={(e) => setTypeId(e.target.value)}
           >
-            <option>-- Business Type --</option>
+            <option>Business Type</option>
             {types &&
               Object.values(types).map((type) => (
                 <option key={type.id} value={type.id}>
@@ -62,9 +63,10 @@ export default function Homepage() {
           <select
             name="stateId"
             id="stateId"
+            className="businessTypeBtn"
             onChange={(e) => setStateId(e.target.value)}
           >
-            <option>-- State --</option>
+            <option>State</option>
             {states &&
               Object.values(states).map((state) => (
                 <option key={state.id} value={state.id}>
@@ -75,9 +77,10 @@ export default function Homepage() {
           <select
             name="cityId"
             id="cityId"
+            className="businessTypeBtn"
             onChange={(e) => setCityId(e.target.value)}
           >
-            <option>-- City --</option>
+            <option>City</option>
             {cities &&
               Object.values(cities).map((city) => (
                 <option key={city.id} value={city.id}>
@@ -85,6 +88,9 @@ export default function Homepage() {
                 </option>
               ))}
           </select>
+          <button className="searchBtn" onClick={handleSearch}>
+            <i class="fas fa-search"></i>
+          </button>
         </div>
         <div className="homepageLinks">Links</div>
       </div>

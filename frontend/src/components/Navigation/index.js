@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/session";
 import { newBusiness } from "../../store/business";
 import ProfileButton from "./ProfileButton";
-import LoginFormPage from "./LoginFormPage";
-import SignupFormPage from "./SignupFormPage";
+import LoginFormPage from "../LoginFormPage";
+import SignupFormPage from "../SignupFormPage";
 import Modal from "../Modal";
 import Menu from "./Menu";
 
