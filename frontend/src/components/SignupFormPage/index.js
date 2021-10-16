@@ -23,7 +23,11 @@ export default function SignupFormPage({ setSignupModal }) {
         signup({ username, email, password, businessAccount })
       );
       if (res.errors) {
-        setErrors(res.errors);
+        const result = [];
+        res.errors.forEach((err) => {
+          if (err !== "Invalid value") result.push(err);
+        });
+        setErrors(result);
       }
       if (!res.errors) {
         setSignupModal(false);
