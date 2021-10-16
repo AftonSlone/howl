@@ -161,7 +161,8 @@ input {
   * 1. Remove the inheritance of text transform in Firefox.
   */
 
-button, select {
+button,
+select {
   /* 1 */
   text-transform: none;
 }
