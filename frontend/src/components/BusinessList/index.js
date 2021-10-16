@@ -1,38 +1,31 @@
+import "./BusinessList.css";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBusinesses } from "../../store/business";
+
+import Header from "../Header";
+import BusinessCard from "../BusinessCard"
 
 export default function BusinessList() {
   const dispatch = useDispatch();
   const ids = useParams();
   const business = useSelector((state) => state.business.businesses);
 
-  const reviewScore = (business) => {
-    let count = 0;
-    business.Reviews.forEach((review) => {
-      count += review.rating;
-    });
-    return count / business.Reviews.length;
-  };
+  
 
   useEffect(() => {
     dispatch(fetchBusinesses(ids));
   }, [dispatch, ids]);
   return (
     <div>
-      {business &&
-        Object.values(business).map((item) => {
-          return (
-            <div key={item.id}>
-              <Link to={`/business/${item.id}`}>{item.name}</Link>
-              <p>
-                {reviewScore(item) ? reviewScore(item) : 0} :{" "}
-                {item.Reviews.length}
-              </p>
-            </div>
-          );
-        })}
+      <Header />
+      <div className="businessListContentWrapper">
+        <div className="businessListContent">
+          <h1 className="businessListH1">Results</h1>
+          {business.map(card => <BusinessCard data={card}/>)}
+        </div>
+      </div>
     </div>
   );
 }

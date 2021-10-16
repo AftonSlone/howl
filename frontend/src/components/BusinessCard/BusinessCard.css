@@ -1,0 +1,46 @@
+.businessCardWrapper {
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.businessCardIcon {
+  width: 15%;
+  height: 100px;
+  font-size: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: crimson;
+  color: white;
+}
+
+.businessCardContent {
+  display: flex;
+  flex-direction: column;
+  width: 83%;
+}
+
+.businessCardReviewScore {
+  width: 40%;
+  background-color: cyan;
+  display: flex;
+}
+
+.businessCardReviewScoreIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: crimson;
+  color: white;
+  width: 10%;
+  height: 25px;
+  margin-right: 5px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+.false {
+    background-color: gray;
+}
