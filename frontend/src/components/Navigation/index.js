@@ -3,11 +3,14 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/session";
 import { newBusiness } from "../../store/business";
+
 import ProfileButton from "./ProfileButton";
 import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
 import Modal from "../Modal";
 import Menu from "./Menu";
+import NewBusinessForm from "../NewBusinessForm";
+
 
 export default function Navigation() {
   const dispatch = useDispatch();
@@ -15,23 +18,10 @@ export default function Navigation() {
   const [clicked, setClicked] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [signupModal, setSignupModal] = useState(false);
+  const [businessModal, setBusinessModal] = useState(false);
 
   window.onclick = (e) => {
     if (e.target.className !== "fas fa-user") setClicked(false);
-  };
-
-  const postNewBusiness = async () => {
-    const business = {
-      name: "dog pile",
-      typeId: 2,
-      ownerId: 1,
-      loc: "",
-      cityId: 1,
-      stateId: 5,
-      street: "102 puppy",
-      info: "This is nothing but a test",
-    };
-    dispatch(newBusiness(business));
   };
 
   const handleClick = () => {
@@ -64,7 +54,10 @@ export default function Navigation() {
           </div>
         )}
         {user && user.businessAccount ? (
-          <button className="navBtn navBtnSignup" onClick={postNewBusiness}>
+          <button
+            className="navBtn navBtnSignup"
+            onClick={() => setBusinessModal(true)}
+          >
             New Business
           </button>
         ) : null}
@@ -76,6 +69,12 @@ export default function Navigation() {
       )}
       {signupModal && (
         <Modal component={SignupFormPage} setSignupModal={setSignupModal} />
+      )}
+      {businessModal && (
+        <Modal
+          component={NewBusinessForm}
+          setBusinessModal={setBusinessModal}
+        />
       )}
     </nav>
   );

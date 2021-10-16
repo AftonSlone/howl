@@ -14,7 +14,7 @@ export const editReviews = (review) => async (dispatch) => {
   const { reviewId, userId, rating, text } = review;
   const res = await csrfFetch(`/api/reviews/${reviewId}`, {
     method: "PUT",
-    body: JSON.stringify({userId, rating, text}),
+    body: JSON.stringify({ userId, rating, text }),
   });
 };
 
@@ -74,13 +74,21 @@ export const fetchBusiness = (businessId) => async (dispatch) => {
 };
 
 export const newBusiness = (business) => async (dispatch) => {
-  const res = await csrfFetch("/api/business", {
-    method: "POST",
-    body: JSON.stringify(business),
-  });
+  console.log(business)
+  try {
+    const res = await csrfFetch("/api/business", {
+      method: "POST",
+      body: JSON.stringify(business),
+    });
 
-  const data = await res.json();
-  dispatch(setBusiness(data));
+    const data = await res.json();
+    dispatch(setBusiness(data));
+    return data;
+  } catch (errors) {
+    const error = errors.json();
+
+    return error;
+  }
 };
 
 export default function businessReducer(
