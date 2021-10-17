@@ -1,15 +1,21 @@
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { logout } from "../../store/session";
 
 export default function Menu({ user }) {
   const dispatch = useDispatch();
-  const handleLogout = () => {
-    dispatch(logout());
+  const handleLogout = async () => {
+    await dispatch(logout());
   };
   return (
     <div className="menuContainer">
-      <div>{user.username}</div>
-      <button onClick={handleLogout}>Logout</button>
+      <div className="username">{user.username}</div>
+      <Link className="HeaderBtnSignup" to={`/user/${user.id}`}>
+        Manage Businesses
+      </Link>
+      <button className="HeaderBtnSignup" onClick={handleLogout}>
+        Logout
+      </button>
     </div>
   );
 }

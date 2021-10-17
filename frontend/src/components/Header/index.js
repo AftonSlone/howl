@@ -1,16 +1,15 @@
-import "./Navigation.css";
+import "./Header.css";
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/session";
 import { newBusiness } from "../../store/business";
-
-import ProfileButton from "./ProfileButton";
+import ProfileButton from "../Navigation/ProfileButton";
 import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
-import Modal from "../Modal";
-import Menu from "./Menu";
 import NewBusinessForm from "../NewBusinessForm";
-
+import Menu from "../Navigation/Menu";
+import Modal from "../Modal";
 
 export default function Navigation() {
   const dispatch = useDispatch();
@@ -22,30 +21,37 @@ export default function Navigation() {
 
   window.onclick = (e) => {
     if (e.target.className !== "fas fa-user") setClicked(false);
+    if (e.target.className === "modalWrapper") {
+      setLoginModal(false);
+      setBusinessModal(false);
+      setSignupModal(false);
+    }
   };
 
   const handleClick = () => {
     setClicked(!clicked);
   };
   return (
-    <nav className="navContainer">
-      <div className="NavBtnContainer">
+    <nav className="HeaderContainer">
+      <div>
+        <NavLink to="/">
+          <img className="HeaderLogo" src="https://i.imgur.com/SzFAJOX.png" />
+        </NavLink>
+      </div>
+      <div className="HeaderBtnContainer">
         {!user && (
-          <div className="navBtn" onClick={() => setLoginModal(true)}>
+          <div className="HeaderBtn" onClick={() => setLoginModal(true)}>
             Login
           </div>
         )}
         {!user && (
-          <div
-            className="navBtn navBtnSignup"
-            onClick={() => setSignupModal(true)}
-          >
+          <div className="HeaderBtnSignup" onClick={() => setSignupModal(true)}>
             Signup
           </div>
         )}
         {!user && (
           <div
-            className="navBtn navBtnSignup"
+            className="HeaderBtnSignup"
             onClick={() => {
               dispatch(login({ credential: "demo", password: "password" }));
             }}
@@ -55,7 +61,7 @@ export default function Navigation() {
         )}
         {user && user.businessAccount ? (
           <button
-            className="navBtn navBtnSignup"
+            className="HeaderBtnSignup"
             onClick={() => setBusinessModal(true)}
           >
             New Business

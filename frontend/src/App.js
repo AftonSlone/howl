@@ -4,9 +4,11 @@ import { useDispatch } from "react-redux";
 
 import { restoreUser } from "./store/session";
 
-import LoginFormPage from "./components/Navigation/LoginFormPage";
-import SignupFormPage from "./components/Navigation/SignupFormPage";
 import Homepage from "./components/Homepage";
+import BusinessList from "./components/BusinessList";
+import Business from "./components/Business";
+import Profile from "./components/Profile";
+import LoginFormPage from "./components/LoginFormPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,8 +26,26 @@ function App() {
         <Route path="/login">
           <LoginFormPage />
         </Route>
-        <Route path="/signup">
-          <SignupFormPage />
+        <Route path="/business/type/:typeId/state/:stateId/ctiy/:cityId">
+          <BusinessList />
+        </Route>
+        <Route path="/business/type/:typeId/state/:stateId">
+          <BusinessList />
+        </Route>
+        <Route path="/business/type/:typeId">
+          <BusinessList />
+        </Route>
+        <Route path="/business/state/:stateId/ctiy/:cityId">
+          <BusinessList />
+        </Route>
+        <Route path="/business/state/:stateId">
+          <BusinessList />
+        </Route>
+        <Route path="/business/:businessId">
+          <Business />
+        </Route>
+        <Route path="/user/:userId">
+          <Profile />
         </Route>
       </Switch>
     </>

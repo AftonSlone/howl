@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     Business.belongsTo(models.User, { foreignKey: "ownerId" });
     Business.belongsTo(models.State, { foreignKey: "stateId" });
     Business.belongsTo(models.City, { foreignKey: "cityId" });
-    Business.belongsTo(models.Hours, { foreignKey: "businessId" });
     Business.hasMany(models.Review, { foreignKey: "businessId" });
+    Business.hasOne(models.Hours, { foreignKey: "businessId" });
   };
   return Business;
 };

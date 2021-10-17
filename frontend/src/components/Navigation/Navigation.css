@@ -1,46 +1,103 @@
 .navContainer {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-    background-color: burlywood;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 10vh;
+  justify-content: right;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+a {
+  text-decoration: none;
 }
 
 .menuContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 10%;
-    position: absolute;
-    background-color: crimson;
-    top: 68px;
-    right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  position: absolute;
+  background-color: white;
+  top: 80px;
+  right: 10px;
+  border-radius: 10px;
+  border: 2px solid crimson;
+  z-index: 1;
 }
 
 
-a {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 10%;
-    height: 60px;
-    text-decoration: none;
+.menuContainer > button {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
+
+.menuContainer > div {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 25px;
+  color: crimson;
+}
+
 
 .logoutBtnContainer {
-    z-index: 2;
+  z-index: 2;
 }
 
 .profileButton {
-    font-size: 30PX;
-    width: 10%;
-    height: 60PX;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  font-size: 30px;
+  width: 2%;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 25px;
+  color: white
 }
 
+.profileButton:hover {
+  color: rgba(0, 0, 0, 0.582);
+}
 
+.navLogo {
+  width: 100%;
+}
+
+.navBtn {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin-right: 15px;
+  width: 40%;
+  height: 50%;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+}
+
+.navBtn:hover {
+  border-bottom: 3px solid white;
+  cursor: pointer;
+}
+
+.navBtnSignup {
+  border: 3px solid white;
+}
+
+.navBtnSignup:hover {
+  background-color: white;
+  color: rgb(0, 0, 0);
+}
+
+.NavBtnContainer {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
