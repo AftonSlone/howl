@@ -19,10 +19,19 @@ export const editReviews = (review) => async (dispatch) => {
 };
 
 export const postReviews = (review) => async (dispatch) => {
-  const res = await csrfFetch("/api/reviews", {
-    method: "POST",
-    body: JSON.stringify(review),
-  });
+  try {
+    const res = await csrfFetch("/api/reviews", {
+      method: "POST",
+      body: JSON.stringify(review),
+    });
+
+    const data = await res.json();
+    return data;
+  } catch (errors) {
+    const error = errors.json();
+
+    return error;
+  }
 };
 
 export const deleteReviews = (ids) => async (dispatch) => {
@@ -74,7 +83,6 @@ export const fetchBusiness = (businessId) => async (dispatch) => {
 };
 
 export const newBusiness = (business) => async (dispatch) => {
-  console.log(business)
   try {
     const res = await csrfFetch("/api/business", {
       method: "POST",
