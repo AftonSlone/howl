@@ -1,0 +1,56 @@
+.businessWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.businessBanner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 50px;
+  font-size: 50px;
+  font-weight: bold;
+  color: white;
+  background-image: url("https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80");
+  background-size: cover;
+  height: 50vh;
+}
+
+.businessContent {
+  width: 60%;
+  background-color: rgba(139, 0, 139, 0.109);
+  color: crimson;
+}
+
+.businessContent > h2 {
+  font-size: 50px;
+  margin-top: 25px;
+  margin-bottom: 20px;
+}
+
+.businessLocationHours {
+  width: 100%;
+  background-color: cyan;
+}
+
+.businessLocationHours > h2 {
+  font-size: 30px;
+  margin-top: 30px;
+}
+
+.businessLocationHours > p {
+  margin-top: 10px;
+}
+
+.businessAbout > h2 {
+  font-size: 30px;
+  margin-top: 30px;
+}
+
+.businessAbout > p {
+  margin-top: 10px;
+}
