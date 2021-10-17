@@ -2,6 +2,7 @@ import "./Business.css";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { csrfFetch } from "../../store/csrf";
 import {
   fetchBusiness,
   deleteReviews,
@@ -22,6 +23,14 @@ export default function Business() {
   const [rating, setRating] = useState(5);
   const [text, setText] = useState("dog133");
   const [errors, setErrors] = useState(null);
+
+ const getTypeName = () => {
+   if (currentBusiness.typeId === 1) return 'one'
+   if (currentBusiness.typeId === 2) return 'two'
+   if (currentBusiness.typeId === 3) return 'three'
+   if (currentBusiness.typeId === 4) return 'four'
+   if (currentBusiness.typeId === 5) return 'five'
+ }
 
   const reviewScore = (business) => {
     let count = 0;
@@ -68,7 +77,7 @@ export default function Business() {
   return (
     <div className="businessWrapper">
       <Header />
-      <div className="businessBanner"></div>
+      <div className={`businessBanner ${getTypeName()}`}></div>
       <div className="businessContent">
         <h2>{currentBusiness.name}</h2>
         <div className="businessCardReviewScore">
@@ -77,7 +86,7 @@ export default function Business() {
               1 <= reviewScore(currentBusiness)
             }`}
           >
-            <i className="fas fa-star"></i>{" "}
+            <i className="fas fa-star"></i>
           </div>
           <div
             className={`businessCardReviewScoreIcon ${
@@ -126,36 +135,64 @@ export default function Business() {
           <h2>{`About the Business`}</h2>
           <p>{currentBusiness.info}</p>
         </div>
-      </div>
-      {/* {currentBusiness.name}
-      {currentBusiness.Reviews.map((review) => (
-        <div key={review.id}>
-          <h2>{review.text}</h2>
-          <p>{review.rating}</p>
-          {user && user.id === review.userId ? (
-            <button
-              className="HeaderBtnSignup"
-              id={review.id}
-              onClick={editReview}
-            >
-              Edit
-            </button>
-          ) : null}
-          {user && user.id === review.userId ? (
-            <button
-              className="HeaderBtnSignup"
-              id={review.id}
-              onClick={deleteReview}
-            >
-              Delete
-            </button>
-          ) : null}
+        <div className="businessReviews">
+          <h2>{`Reviews`}</h2>
+          <div className="businessReviewsContent">
+            {currentBusiness.Reviews.map((review) => (
+              <div>
+                <div className="businessReviewScore">
+                  <div
+                    className={`businessReviewScoreIcon ${1 <= review.rating}`}
+                  >
+                    <i className="fas fa-star"></i>{" "}
+                  </div>
+                  <div
+                    className={`businessReviewScoreIcon ${2 <= review.rating}`}
+                  >
+                    <i className="fas fa-star"></i>
+                  </div>
+                  <div
+                    className={`businessReviewScoreIcon ${3 <= review.rating}`}
+                  >
+                    <i className="fas fa-star"></i>
+                  </div>
+                  <div
+                    className={`businessReviewScoreIcon ${4 <= review.rating}`}
+                  >
+                    <i className="fas fa-star"></i>
+                  </div>
+                  <div
+                    className={`businessReviewScoreIcon ${5 === review.rating}`}
+                  >
+                    <i className="fas fa-star"></i>
+                  </div>
+                </div>
+                <p>{review.text}</p>
+                <div className="businessReviewsBtnContainer">
+                  {user && user.id === review.userId ? (
+                    <button
+                      className="businessBtn"
+                      id={review.id}
+                      onClick={editReview}
+                    >
+                      Edit
+                    </button>
+                  ) : null}
+                  {user && user.id === review.userId ? (
+                    <button
+                      className="businessBtn"
+                      id={review.id}
+                      onClick={deleteReview}
+                    >
+                      Delete
+                    </button>
+                  ) : null}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
-      <button className="HeaderBtnSignup" onClick={postReview}>
-        New Review
-      </button>
-    </div> */}
+      </div>
     </div>
   );
 }
