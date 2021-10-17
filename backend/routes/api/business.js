@@ -4,7 +4,14 @@ const asyncHandler = require("express-async-handler");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
-const { Business, Hours, Review } = require("../../db/models");
+const {
+  Business,
+  Hours,
+  Review,
+  BusinesType,
+  City,
+  State,
+} = require("../../db/models");
 
 const router = express.Router();
 
@@ -45,7 +52,7 @@ router.get(
   asyncHandler(async (req, res, next) => {
     const { businessId } = req.params;
     const business = await Business.findByPk(businessId, {
-      include: [Hours, Review],
+      include: [Hours, Review, City, State, BusinesType],
     });
     res.json(business);
   })
@@ -57,7 +64,7 @@ router.get(
     const { ownerId } = req.params;
     const business = await Business.findAll({
       where: { ownerId },
-      include: [Hours, Review],
+      include: [Hours, Review, City, State, BusinesType],
     });
 
     res.json(business);
@@ -70,7 +77,7 @@ router.get(
     const { typeId } = req.params;
     const business = await Business.findAll({
       where: { typeId },
-      include: [Hours, Review],
+      include: [Hours, Review, City, State, BusinesType],
     });
 
     res.json(business);
@@ -83,7 +90,7 @@ router.get(
     const { typeId, stateId } = req.params;
     const business = await Business.findAll({
       where: { typeId, stateId },
-      include: [Hours, Review],
+      include: [Hours, Review, City, State, BusinesType],
     });
 
     res.json(business);
@@ -96,7 +103,7 @@ router.get(
     const { typeId, stateId, cityId } = req.params;
     const business = await Business.findAll({
       where: { typeId, stateId, cityId },
-      include: [Hours, Review],
+      include: [Hours, Review, City, State, BusinesType],
     });
 
     res.json(business);
@@ -109,7 +116,7 @@ router.get(
     const { stateId, cityId } = req.params;
     const business = await Business.findAll({
       where: { stateId, cityId },
-      include: [Hours, Review],
+      include: [Hours, Review, City, State, BusinesType],
     });
 
     res.json(business);
@@ -122,7 +129,7 @@ router.get(
     const { stateId } = req.params;
     const business = await Business.findAll({
       where: { stateId },
-      include: [Hours, Review],
+      include: [Hours, Review, City, State, BusinesType],
     });
 
     res.json(business);

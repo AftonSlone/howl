@@ -5,14 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchBusinesses } from "../../store/business";
 
 import Header from "../Header";
-import BusinessCard from "../BusinessCard"
+import BusinessCard from "../BusinessCard";
 
 export default function BusinessList() {
   const dispatch = useDispatch();
   const ids = useParams();
   const business = useSelector((state) => state.business.businesses);
-
-  
 
   useEffect(() => {
     dispatch(fetchBusinesses(ids));
@@ -23,7 +21,9 @@ export default function BusinessList() {
       <div className="businessListContentWrapper">
         <div className="businessListContent">
           <h1 className="businessListH1">Results</h1>
-          {business.map(card => <BusinessCard data={card}/>)}
+          {business.map((card) => (
+            <BusinessCard key={card.id} data={card} />
+          ))}
         </div>
       </div>
     </div>

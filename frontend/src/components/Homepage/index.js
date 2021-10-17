@@ -88,7 +88,7 @@ export default function Homepage() {
               ))}
           </select>
           <button className="searchBtn" onClick={handleSearch}>
-            <i class="fas fa-search"></i>
+            <i className="fas fa-search"></i>
           </button>
         </div>
       </div>

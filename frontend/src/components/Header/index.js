@@ -7,7 +7,9 @@ import { newBusiness } from "../../store/business";
 import ProfileButton from "../Navigation/ProfileButton";
 import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
+import NewBusinessForm from "../NewBusinessForm";
 import Menu from "../Navigation/Menu";
+import Modal from "../Modal";
 
 export default function Navigation() {
   const dispatch = useDispatch();
@@ -15,23 +17,15 @@ export default function Navigation() {
   const [clicked, setClicked] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [signupModal, setSignupModal] = useState(false);
+  const [businessModal, setBusinessModal] = useState(false);
 
   window.onclick = (e) => {
     if (e.target.className !== "fas fa-user") setClicked(false);
-  };
-
-  const postNewBusiness = async () => {
-    const business = {
-      name: "dog pile",
-      typeId: 2,
-      ownerId: 1,
-      loc: "",
-      cityId: 1,
-      stateId: 5,
-      street: "102 puppy",
-      info: "This is nothing but a test",
-    };
-    dispatch(newBusiness(business));
+    if (e.target.className === "modalWrapper") {
+      setLoginModal(false);
+      setBusinessModal(false);
+      setSignupModal(false);
+    }
   };
 
   const handleClick = () => {
@@ -51,10 +45,7 @@ export default function Navigation() {
           </div>
         )}
         {!user && (
-          <div
-            className="HeaderBtnSignup"
-            onClick={() => setSignupModal(true)}
-          >
+          <div className="HeaderBtnSignup" onClick={() => setSignupModal(true)}>
             Signup
           </div>
         )}
@@ -69,15 +60,28 @@ export default function Navigation() {
           </div>
         )}
         {user && user.businessAccount ? (
-          <button className="HeaderBtnSignup" onClick={postNewBusiness}>
-              New Business
+          <button
+            className="HeaderBtnSignup"
+            onClick={() => setBusinessModal(true)}
+          >
+            New Business
           </button>
         ) : null}
         {user && <ProfileButton handleClick={handleClick} />}
       </div>
       {clicked && <Menu user={user} />}
-      {loginModal && <LoginFormPage setLoginModal={setLoginModal} />}
-      {signupModal && <SignupFormPage setSignupModal={setSignupModal} />}
+      {loginModal && (
+        <Modal component={LoginFormPage} setLoginModal={setLoginModal} />
+      )}
+      {signupModal && (
+        <Modal component={SignupFormPage} setSignupModal={setSignupModal} />
+      )}
+      {businessModal && (
+        <Modal
+          component={NewBusinessForm}
+          setBusinessModal={setBusinessModal}
+        />
+      )}
     </nav>
   );
 }
