@@ -23,10 +23,13 @@ function App() {
         <Route exact path="/">
           <Homepage />
         </Route>
+        <Route exapct path="/business/state/:stateId/cties/:cityId/">
+          <BusinessList />
+        </Route>
         <Route path="/login">
           <LoginFormPage />
         </Route>
-        <Route path="/business/type/:typeId/state/:stateId/ctiy/:cityId">
+        <Route path="/business/type/:typeId/state/:stateId/city/:cityId">
           <BusinessList />
         </Route>
         <Route path="/business/type/:typeId/state/:stateId">
@@ -35,10 +38,7 @@ function App() {
         <Route path="/business/type/:typeId">
           <BusinessList />
         </Route>
-        <Route path="/business/state/:stateId/ctiy/:cityId">
-          <BusinessList />
-        </Route>
-        <Route path="/business/state/:stateId">
+        <Route path="/business/state/:stateId/">
           <BusinessList />
         </Route>
         <Route path="/business/:businessId">

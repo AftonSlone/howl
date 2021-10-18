@@ -1,7 +1,7 @@
 "use strict";
 let hours = [];
 
-for (let i = 0; i < 25; i++) {
+for (let i = 0; i < 500; i++) {
   hours.push({
     businessId: i + 1,
     monday: "7:00 AM - 9:00 PM",

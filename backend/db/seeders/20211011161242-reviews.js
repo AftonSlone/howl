@@ -3,7 +3,7 @@ const faker = require("faker");
 
 const reviews = [];
 
-for (let i = 0; i < 25; i++) {
+for (let i = 0; i < 500; i++) {
   for (let j = 0; j < 10; j++) {
     reviews.push({
       userId: Math.floor(Math.random() * (100 - 1 + 1) + 1),
