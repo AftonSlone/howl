@@ -33,7 +33,7 @@ export default function Profile() {
 
   useEffect(() => {
     dispatch(fetchBusinesses({ ownerId: userId }));
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   useEffect(() => {
     if (!user) history.push("/");

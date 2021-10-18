@@ -45,8 +45,8 @@ export default function Business() {
     dispatch(fetchBusiness(businessId));
   };
 
-  useEffect(async () => {
-    await dispatch(fetchBusiness(businessId));
+  useEffect( () => {
+    dispatch(fetchBusiness(businessId));
   }, [dispatch, businessId]);
 
   if (!currentBusiness) return "Loading...";
