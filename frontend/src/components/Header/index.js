@@ -8,6 +8,7 @@ import ProfileButton from "../Navigation/ProfileButton";
 import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
 import NewBusinessForm from "../NewBusinessForm";
+import NewReviewForm from "../NewReviewForm";
 import Menu from "../Navigation/Menu";
 import Modal from "../Modal";
 
@@ -18,6 +19,7 @@ export default function Navigation() {
   const [loginModal, setLoginModal] = useState(false);
   const [signupModal, setSignupModal] = useState(false);
   const [businessModal, setBusinessModal] = useState(false);
+  const [reviewModal, setReviewModal] = useState(false);
 
   window.onclick = (e) => {
     if (e.target.className !== "fas fa-user") setClicked(false);
@@ -67,6 +69,15 @@ export default function Navigation() {
             New Business
           </button>
         ) : null}
+
+        {user && user ? (
+          <button
+            className="HeaderBtnSignup"
+            onClick={() => setReviewModal(true)}
+          >
+            Write a Review
+          </button>
+        ) : null}
         {user && <ProfileButton handleClick={handleClick} />}
       </div>
       {clicked && <Menu user={user} />}
@@ -81,6 +92,9 @@ export default function Navigation() {
           component={NewBusinessForm}
           setBusinessModal={setBusinessModal}
         />
+      )}
+      {reviewModal && (
+        <Modal component={NewReviewForm} setReviewModal={setReviewModal} />
       )}
     </nav>
   );

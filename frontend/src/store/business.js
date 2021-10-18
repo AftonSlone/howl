@@ -11,18 +11,35 @@ const setSelectedBusiness = (business) => ({
 });
 
 export const editReviews = (review) => async (dispatch) => {
-  const { reviewId, userId, rating, text } = review;
-  const res = await csrfFetch(`/api/reviews/${reviewId}`, {
-    method: "PUT",
-    body: JSON.stringify({ userId, rating, text }),
-  });
+  const { reviewId } = review;
+  try {
+    const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+      method: "PUT",
+      body: JSON.stringify(review),
+    });
+    const data = await res.json();
+    return data;
+  } catch (errors) {
+    const error = errors.json();
+
+    return error;
+  }
 };
 
 export const postReviews = (review) => async (dispatch) => {
-  const res = await csrfFetch("/api/reviews", {
-    method: "POST",
-    body: JSON.stringify(review),
-  });
+  try {
+    const res = await csrfFetch("/api/reviews", {
+      method: "POST",
+      body: JSON.stringify(review),
+    });
+
+    const data = await res.json();
+    return data;
+  } catch (errors) {
+    const error = errors.json();
+
+    return error;
+  }
 };
 
 export const deleteReviews = (ids) => async (dispatch) => {
@@ -74,7 +91,6 @@ export const fetchBusiness = (businessId) => async (dispatch) => {
 };
 
 export const newBusiness = (business) => async (dispatch) => {
-  console.log(business)
   try {
     const res = await csrfFetch("/api/business", {
       method: "POST",
@@ -83,6 +99,24 @@ export const newBusiness = (business) => async (dispatch) => {
 
     const data = await res.json();
     dispatch(setBusiness(data));
+    return data;
+  } catch (errors) {
+    const error = errors.json();
+
+    return error;
+  }
+};
+
+export const editBusiness = (business) => async (dispatch) => {
+  try {
+    const { businessId } = business;
+    const res = await csrfFetch(`/api/business/${businessId}`, {
+      method: "PUT",
+      body: JSON.stringify(business),
+    });
+
+    const data = await res.json();
+    // dispatch(setBusiness(data));
     return data;
   } catch (errors) {
     const error = errors.json();

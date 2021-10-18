@@ -31,10 +31,12 @@ input[type="text"] {
 
   .modalWrapper {
     width: 100%;
-    height: 100vh;
-    background-color: rgba(42, 41, 41, 0.787);
-    position: absolute;
-    top: 0px;
+    height: 100%;
+    background-color: rgb(82, 16, 187);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50, -50);
     display: flex;
     justify-content: center;
     align-items: center;
