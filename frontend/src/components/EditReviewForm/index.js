@@ -13,9 +13,13 @@ export default function EditReviewForm({ setEditReviewModal, review }) {
     (state) => state.business.selectedBusiness
   );
 
+  window.onclick = (e) => {
+    if (e.target.className === "modalWrapper") setEditReviewModal(false);
+  };
+
   const [text, setText] = useState("");
   const [rating, setRating] = useState(0);
-  const [stateId, setStateId] = useState(null);
+  const [stateId] = useState(null);
   const [counter, setCounter] = useState(0);
   const [errors, setErrors] = useState([]);
 
@@ -38,7 +42,7 @@ export default function EditReviewForm({ setEditReviewModal, review }) {
       setText(review.text);
       setRating(review.rating);
     }
-  }, []);
+  }, [review]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

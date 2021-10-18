@@ -2,12 +2,7 @@ import "./Business.css";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-  fetchBusiness,
-  deleteReviews,
-  postReviews,
-  editReviews,
-} from "../../store/business";
+import { fetchBusiness, deleteReviews } from "../../store/business";
 
 import Header from "../Header";
 import EditReviewForm from "../EditReviewForm";
@@ -47,34 +42,10 @@ export default function Business() {
     return count / business.Reviews.length;
   };
 
-  // const editReview = async (e) => {
-  //   const newReview = {
-  //     userId: user.id,
-  //     rating,
-  //     text,
-  //     reviewId: e.target.id,
-  //   };
-  //   await dispatch(editReviews(newReview));
-  //   dispatch(fetchBusiness(businessId));
-  // };
-
   const deleteReview = async (e) => {
     await dispatch(deleteReviews({ userId: user.id, id: e.target.id }));
     dispatch(fetchBusiness(businessId));
   };
-
-  // const postReview = async () => {
-  //   const newReview = {
-  //     userId: user.id,
-  //     businessId,
-  //     rating,
-  //     text,
-  //   };
-
-  //   await dispatch(postReviews(newReview));
-
-  //   dispatch(fetchBusiness(businessId));
-  // };
 
   useEffect(async () => {
     await dispatch(fetchBusiness(businessId));

@@ -183,4 +183,25 @@ router.put(
   })
 );
 
+router.delete(
+  "/:businessId",
+  requireAuth,
+  asyncHandler(async (req, res, next) => {
+    const { businessId } = req.params;
+    await Hours.destroy({
+      where: { businessId },
+    });
+
+    await Review.destroy({
+      where: { businessId },
+    });
+    const business = await Business.findByPk(businessId);
+
+    if (business) business.destroy();
+
+    res.status = 204;
+    res.json();
+  })
+);
+
 module.exports = router;

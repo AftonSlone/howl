@@ -13,10 +13,9 @@ export default function NewReviewForm({ setReviewModal }) {
     (state) => state.business.selectedBusiness
   );
 
-
   const [text, setText] = useState("");
   const [rating, setRating] = useState(0);
-  const [stateId, setStateId] = useState(null);
+  const [stateId] = useState(null);
   const [counter, setCounter] = useState(0);
   const [errors, setErrors] = useState([]);
 

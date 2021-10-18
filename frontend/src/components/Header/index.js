@@ -1,9 +1,8 @@
 import "./Header.css";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/session";
-import { newBusiness } from "../../store/business";
 import ProfileButton from "../Navigation/ProfileButton";
 import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
@@ -11,10 +10,14 @@ import NewBusinessForm from "../NewBusinessForm";
 import NewReviewForm from "../NewReviewForm";
 import Menu from "../Navigation/Menu";
 import Modal from "../Modal";
+import { fetchBusinesses } from "../../store/business";
 
 export default function Navigation() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+  const currentBusiness = useSelector(
+    (state) => state.business.selectedBusiness
+  );
   const [clicked, setClicked] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [signupModal, setSignupModal] = useState(false);
@@ -27,17 +30,27 @@ export default function Navigation() {
       setLoginModal(false);
       setBusinessModal(false);
       setSignupModal(false);
+      setReviewModal(false);
     }
   };
 
   const handleClick = () => {
     setClicked(!clicked);
   };
+
+  useEffect(() => {
+    if (user) dispatch(fetchBusinesses({ownerId: user.id}))
+  }, [businessModal])
+
   return (
     <nav className="HeaderContainer">
       <div>
         <NavLink to="/">
-          <img className="HeaderLogo" src="https://i.imgur.com/SzFAJOX.png" />
+          <img
+            className="HeaderLogo"
+            src="https://i.imgur.com/SzFAJOX.png"
+            alt=""
+          />
         </NavLink>
       </div>
       <div className="HeaderBtnContainer">
@@ -70,7 +83,7 @@ export default function Navigation() {
           </button>
         ) : null}
 
-        {user && user ? (
+        {user && currentBusiness && user ? (
           <button
             className="HeaderBtnSignup"
             onClick={() => setReviewModal(true)}

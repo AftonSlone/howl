@@ -1,7 +1,6 @@
 import "./NewBusinessForm.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signup } from "../../store/session";
 import { getStates } from "../../store/state";
 import { getTypes } from "../../store/type";
 import { getCities } from "../../store/city";

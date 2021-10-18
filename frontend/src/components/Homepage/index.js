@@ -1,7 +1,6 @@
 import "./Homepage.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateId } from "../../store/id";
 import { getStates } from "../../store/state";
 import { getCities } from "../../store/city";
 import { getTypes } from "../../store/type";
@@ -29,7 +28,6 @@ export default function Homepage() {
   }, [dispatch, stateId]);
 
   const handleSearch = () => {
-    dispatch(updateId({ typeId, stateId, cityId }));
     let url = "/business";
     if (typeId) url += `/type/${typeId}`;
     if (stateId) url += `/state/${stateId}`;
@@ -42,7 +40,11 @@ export default function Homepage() {
       <div className="navWrapper">
         <Navigation />
         <div className="homepageLogo">
-          <img className="HeaderLogo1" src="https://i.imgur.com/SzFAJOX.png" />
+          <img
+            className="HeaderLogo1"
+            src="https://i.imgur.com/SzFAJOX.png"
+            alt=""
+          />
         </div>
         <div className="homepageSearchWrapper">
           <select
@@ -93,7 +95,7 @@ export default function Homepage() {
         </div>
       </div>
       <div className="homepageContent">
-        <div className="homepageLinks">Links</div>
+        {/* <div className="homepageLinks">Links</div> */}
       </div>
     </div>
   );
