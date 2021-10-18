@@ -13,7 +13,6 @@ export default function BusinessList() {
   const business = useSelector((state) => state.business.businesses);
 
   useEffect(() => {
-    console.log(ids)
     dispatch(fetchBusinesses(ids));
   }, [dispatch, ids]);
 

@@ -27,9 +27,7 @@ export default function Business() {
   };
 
   const handleEditReview = (id) => {
-    console.log(currentBusiness.Reviews);
     const result = currentBusiness.Reviews.find((item) => item.id === +id);
-    console.log(result);
     setSelectedReview(result);
     setEditReviewModal(true);
   };
