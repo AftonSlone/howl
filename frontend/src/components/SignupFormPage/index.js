@@ -1,12 +1,12 @@
 import "./SignupForm.css";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signup } from "../../store/session";
-import { Redirect } from "react-router";
+
 
 export default function SignupFormPage({ setSignupModal }) {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.session.user);
+
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");

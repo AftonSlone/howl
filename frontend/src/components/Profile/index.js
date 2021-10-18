@@ -27,7 +27,7 @@ export default function Profile() {
   useEffect(() => {
     if (!user) history.push("/");
     dispatch(fetchBusinesses({ ownerId: userId }));
-  }, [editBusinessModal, user]);
+  }, [editBusinessModal, user, dispatch, history, userId]);
   if (!business || !user) return "Loading...";
   return (
     <div>

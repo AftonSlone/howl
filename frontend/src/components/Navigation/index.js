@@ -2,7 +2,6 @@ import "./Navigation.css";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/session";
-import { newBusiness } from "../../store/business";
 
 import ProfileButton from "./ProfileButton";
 import LoginFormPage from "../LoginFormPage";
@@ -10,7 +9,6 @@ import SignupFormPage from "../SignupFormPage";
 import Modal from "../Modal";
 import Menu from "./Menu";
 import NewBusinessForm from "../NewBusinessForm";
-
 
 export default function Navigation() {
   const dispatch = useDispatch();
@@ -22,6 +20,11 @@ export default function Navigation() {
 
   window.onclick = (e) => {
     if (e.target.className !== "fas fa-user") setClicked(false);
+    if (e.target.className === "modalWrapper") {
+      setBusinessModal(false);
+      setLoginModal(false);
+      setSignupModal(false);
+    }
   };
 
   const handleClick = () => {

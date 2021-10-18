@@ -1,11 +1,10 @@
 import "./EditBusinessForm.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { getStates } from "../../store/state";
 import { getTypes } from "../../store/type";
 import { getCities } from "../../store/city";
-import { editBusiness, fetchBusinesses } from "../../store/business";
+import { editBusiness } from "../../store/business";
 
 export default function EditBusinessForm({ setEditBusinessModal }) {
   const dispatch = useDispatch();
@@ -17,7 +16,6 @@ export default function EditBusinessForm({ setEditBusinessModal }) {
     (state) => state.business.selectedBusiness
   );
 
-  const { userId } = useParams();
   const [name, setName] = useState("");
   const [typeId, setTypeId] = useState("");
   const [loc, setLoc] = useState("");
@@ -46,7 +44,7 @@ export default function EditBusinessForm({ setEditBusinessModal }) {
       setStreet(currentBusiness.street);
       setInfo(currentBusiness.info);
     }
-  }, []);
+  }, [currentBusiness]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

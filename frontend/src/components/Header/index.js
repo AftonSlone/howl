@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/session";
-import { newBusiness } from "../../store/business";
 import ProfileButton from "../Navigation/ProfileButton";
 import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
@@ -15,6 +14,9 @@ import Modal from "../Modal";
 export default function Navigation() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+  const currentBusiness = useSelector(
+    (state) => state.business.selectedBusiness
+  );
   const [clicked, setClicked] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
   const [signupModal, setSignupModal] = useState(false);
@@ -27,6 +29,7 @@ export default function Navigation() {
       setLoginModal(false);
       setBusinessModal(false);
       setSignupModal(false);
+      setReviewModal(false);
     }
   };
 
@@ -37,7 +40,11 @@ export default function Navigation() {
     <nav className="HeaderContainer">
       <div>
         <NavLink to="/">
-          <img className="HeaderLogo" src="https://i.imgur.com/SzFAJOX.png" />
+          <img
+            className="HeaderLogo"
+            src="https://i.imgur.com/SzFAJOX.png"
+            alt=""
+          />
         </NavLink>
       </div>
       <div className="HeaderBtnContainer">
@@ -70,7 +77,7 @@ export default function Navigation() {
           </button>
         ) : null}
 
-        {user && user ? (
+        {user && currentBusiness && user ? (
           <button
             className="HeaderBtnSignup"
             onClick={() => setReviewModal(true)}
