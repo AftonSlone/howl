@@ -1,10 +1,11 @@
 import "./EditBusinessForm.css";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { getStates } from "../../store/state";
 import { getTypes } from "../../store/type";
 import { getCities } from "../../store/city";
-import { newBusiness } from "../../store/business";
+import { editBusiness, fetchBusinesses } from "../../store/business";
 
 export default function EditBusinessForm({ setEditBusinessModal }) {
   const dispatch = useDispatch();
@@ -12,7 +13,11 @@ export default function EditBusinessForm({ setEditBusinessModal }) {
   const states = useSelector((state) => state.state);
   const cities = useSelector((state) => state.city);
   const types = useSelector((state) => state.type);
+  const currentBusiness = useSelector(
+    (state) => state.business.selectedBusiness
+  );
 
+  const { userId } = useParams();
   const [name, setName] = useState("");
   const [typeId, setTypeId] = useState("");
   const [loc, setLoc] = useState("");
@@ -31,12 +36,35 @@ export default function EditBusinessForm({ setEditBusinessModal }) {
     if (stateId) dispatch(getCities(stateId));
   }, [dispatch, stateId]);
 
+  useEffect(() => {
+    if (currentBusiness) {
+      setName(currentBusiness.name);
+      setTypeId(currentBusiness.typeId);
+      setLoc(currentBusiness.loc);
+      setStateId(currentBusiness.stateId);
+      setCityId(currentBusiness.cityId);
+      setStreet(currentBusiness.street);
+      setInfo(currentBusiness.info);
+    }
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
     const ownerId = user.id;
+    const businessId = currentBusiness.id;
     const res = await dispatch(
-      newBusiness({ name, typeId, loc, stateId, cityId, ownerId, street, info })
+      editBusiness({
+        name,
+        typeId,
+        loc,
+        stateId,
+        cityId,
+        ownerId,
+        street,
+        info,
+        businessId,
+      })
     );
 
     if (res.errors) {
@@ -46,7 +74,9 @@ export default function EditBusinessForm({ setEditBusinessModal }) {
       });
       setErrors(result);
     }
-    if (!res.errors) setEditBusinessModal(false);
+    if (!res.errors) {
+      setEditBusinessModal(false);
+    }
   };
   return (
     <form onSubmit={handleSubmit} className="newBusinessForm">
@@ -67,6 +97,7 @@ export default function EditBusinessForm({ setEditBusinessModal }) {
       <select
         name="typeId"
         className="newbusinessTypeBtn"
+        value={typeId}
         onChange={(e) => setTypeId(e.target.value)}
       >
         <option>Business Type</option>
@@ -88,6 +119,7 @@ export default function EditBusinessForm({ setEditBusinessModal }) {
       <select
         name="stateId"
         className="newbusinessTypeBtn"
+        value={stateId}
         onChange={(e) => setStateId(e.target.value)}
       >
         <option>State</option>
@@ -102,6 +134,7 @@ export default function EditBusinessForm({ setEditBusinessModal }) {
       <select
         name="cityId"
         className="newbusinessTypeBtn"
+        value={cityId}
         onChange={(e) => setCityId(e.target.value)}
       >
         <option>City</option>

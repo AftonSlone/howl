@@ -1,8 +1,8 @@
-import "./Profile.css"
+import "./Profile.css";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchBusinesses } from "../../store/business";
+import { fetchBusiness, fetchBusinesses } from "../../store/business";
 import BusinessCard from "../BusinessCard";
 import EditBusinessForm from "../EditBusinessForm";
 import Header from "../Header";
@@ -13,11 +13,19 @@ export default function Profile() {
   const { userId } = useParams();
   const business = useSelector((state) => state.business.businesses);
   const user = useSelector((state) => state.session.user);
+
   const [editBusinessModal, setEditBusinessModal] = useState(false);
+
+  const handleEdit = async (id) => {
+    console.log(id);
+    console.log("ping")
+    await dispatch(fetchBusiness(id));
+    setEditBusinessModal(true);
+  };
 
   useEffect(() => {
     dispatch(fetchBusinesses({ ownerId: userId }));
-  }, []);
+  }, [editBusinessModal]);
   if (!business || !user) return "Loading...";
   return (
     <div>
@@ -26,7 +34,7 @@ export default function Profile() {
         <div className="businessListContent">
           <h1 className="businessListH1">Results</h1>
           {business.map((card) => (
-            <div className="profileCardWrapper">
+            <div  className="profileCardWrapper">
               <BusinessCard
                 key={card.id}
                 data={card}
@@ -34,7 +42,8 @@ export default function Profile() {
               />
               <button
                 className="businessBtn"
-                onClick={() => setEditBusinessModal(true)}
+                id={card.id}
+                onClick={(e) => handleEdit(e.target.id)}
               >
                 Edit
               </button>

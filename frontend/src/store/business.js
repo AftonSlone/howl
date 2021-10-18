@@ -99,6 +99,24 @@ export const newBusiness = (business) => async (dispatch) => {
   }
 };
 
+export const editBusiness = (business) => async (dispatch) => {
+  try {
+    const { businessId } = business;
+    const res = await csrfFetch(`/api/business/${businessId}`, {
+      method: "PUT",
+      body: JSON.stringify(business),
+    });
+
+    const data = await res.json();
+    // dispatch(setBusiness(data));
+    return data;
+  } catch (errors) {
+    const error = errors.json();
+
+    return error;
+  }
+};
+
 export default function businessReducer(
   state = { businesses: [], selectedBusiness: null },
   action
