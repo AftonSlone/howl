@@ -1,6 +1,6 @@
 import "./Header.css";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/session";
 import ProfileButton from "../Navigation/ProfileButton";
@@ -10,6 +10,7 @@ import NewBusinessForm from "../NewBusinessForm";
 import NewReviewForm from "../NewReviewForm";
 import Menu from "../Navigation/Menu";
 import Modal from "../Modal";
+import { fetchBusinesses } from "../../store/business";
 
 export default function Navigation() {
   const dispatch = useDispatch();
@@ -36,6 +37,11 @@ export default function Navigation() {
   const handleClick = () => {
     setClicked(!clicked);
   };
+
+  useEffect(() => {
+    if (user) dispatch(fetchBusinesses({ownerId: user.id}))
+  }, [businessModal])
+
   return (
     <nav className="HeaderContainer">
       <div>
