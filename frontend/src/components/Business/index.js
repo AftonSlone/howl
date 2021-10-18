@@ -2,7 +2,6 @@ import "./Business.css";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { csrfFetch } from "../../store/csrf";
 import {
   fetchBusiness,
   deleteReviews,
@@ -11,6 +10,8 @@ import {
 } from "../../store/business";
 
 import Header from "../Header";
+import EditReviewForm from "../EditReviewForm";
+import Modal from "../Modal";
 
 export default function Business() {
   const dispatch = useDispatch();
@@ -19,18 +20,24 @@ export default function Business() {
     (state) => state.business.selectedBusiness
   );
   const user = useSelector((state) => state.session.user);
-  const ids = useSelector((state) => state.id);
-  const [rating, setRating] = useState(5);
-  const [text, setText] = useState("dog133");
-  const [errors, setErrors] = useState(null);
+  const [editReviewModal, setEditReviewModal] = useState(false);
+  const [selectedReview, setSelectedReview] = useState(null);
 
- const getTypeName = () => {
-   if (currentBusiness.typeId === 1) return 'one'
-   if (currentBusiness.typeId === 2) return 'two'
-   if (currentBusiness.typeId === 3) return 'three'
-   if (currentBusiness.typeId === 4) return 'four'
-   if (currentBusiness.typeId === 5) return 'five'
- }
+  const getTypeName = () => {
+    if (currentBusiness.typeId === 1) return "one";
+    if (currentBusiness.typeId === 2) return "two";
+    if (currentBusiness.typeId === 3) return "three";
+    if (currentBusiness.typeId === 4) return "four";
+    if (currentBusiness.typeId === 5) return "five";
+  };
+
+  const handleEditReview = (id) => {
+    console.log(currentBusiness.Reviews);
+    const result = currentBusiness.Reviews.find((item) => item.id === +id);
+    console.log(result);
+    setSelectedReview(result);
+    setEditReviewModal(true);
+  };
 
   const reviewScore = (business) => {
     let count = 0;
@@ -40,34 +47,34 @@ export default function Business() {
     return count / business.Reviews.length;
   };
 
-  const editReview = async (e) => {
-    const newReview = {
-      userId: user.id,
-      rating,
-      text,
-      reviewId: e.target.id,
-    };
-    await dispatch(editReviews(newReview));
-    dispatch(fetchBusiness(businessId));
-  };
+  // const editReview = async (e) => {
+  //   const newReview = {
+  //     userId: user.id,
+  //     rating,
+  //     text,
+  //     reviewId: e.target.id,
+  //   };
+  //   await dispatch(editReviews(newReview));
+  //   dispatch(fetchBusiness(businessId));
+  // };
 
   const deleteReview = async (e) => {
     await dispatch(deleteReviews({ userId: user.id, id: e.target.id }));
     dispatch(fetchBusiness(businessId));
   };
 
-  const postReview = async () => {
-    const newReview = {
-      userId: user.id,
-      businessId,
-      rating,
-      text,
-    };
+  // const postReview = async () => {
+  //   const newReview = {
+  //     userId: user.id,
+  //     businessId,
+  //     rating,
+  //     text,
+  //   };
 
-    await dispatch(postReviews(newReview));
+  //   await dispatch(postReviews(newReview));
 
-    dispatch(fetchBusiness(businessId));
-  };
+  //   dispatch(fetchBusiness(businessId));
+  // };
 
   useEffect(async () => {
     await dispatch(fetchBusiness(businessId));
@@ -121,16 +128,18 @@ export default function Business() {
           {currentBusiness.BusinesType.name} - {currentBusiness.City.name},{" "}
           {currentBusiness.State.name}
         </div>
-        <div className="businessLocationHours">
-          <h2>{`Location & Hours`}</h2>
-          <p>Sun: {currentBusiness.Hour.sunday}</p>
-          <p>Mon: {currentBusiness.Hour.monday}</p>
-          <p>Tue: {currentBusiness.Hour.tuesday}</p>
-          <p>Wed: {currentBusiness.Hour.wednesday}</p>
-          <p>Thu: {currentBusiness.Hour.thursday}</p>
-          <p>Fri: {currentBusiness.Hour.friday}</p>
-          <p>Sat: {currentBusiness.Hour.saturday}</p>
-        </div>
+        {currentBusiness.Hour && (
+          <div className="businessLocationHours">
+            <h2>{`Location & Hours`}</h2>
+            <p>Sun: {currentBusiness.Hour.sunday}</p>
+            <p>Mon: {currentBusiness.Hour.monday}</p>
+            <p>Tue: {currentBusiness.Hour.tuesday}</p>
+            <p>Wed: {currentBusiness.Hour.wednesday}</p>
+            <p>Thu: {currentBusiness.Hour.thursday}</p>
+            <p>Fri: {currentBusiness.Hour.friday}</p>
+            <p>Sat: {currentBusiness.Hour.saturday}</p>
+          </div>
+        )}
         <div className="businessAbout">
           <h2>{`About the Business`}</h2>
           <p>{currentBusiness.info}</p>
@@ -173,7 +182,7 @@ export default function Business() {
                     <button
                       className="businessBtn"
                       id={review.id}
-                      onClick={editReview}
+                      onClick={(e) => handleEditReview(e.target.id)}
                     >
                       Edit
                     </button>
@@ -193,6 +202,13 @@ export default function Business() {
           </div>
         </div>
       </div>
+      {editReviewModal && (
+        <Modal
+          component={EditReviewForm}
+          setEditReviewModal={setEditReviewModal}
+          review={selectedReview}
+        />
+      )}
     </div>
   );
 }

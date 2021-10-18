@@ -11,11 +11,19 @@ const setSelectedBusiness = (business) => ({
 });
 
 export const editReviews = (review) => async (dispatch) => {
-  const { reviewId, userId, rating, text } = review;
-  const res = await csrfFetch(`/api/reviews/${reviewId}`, {
-    method: "PUT",
-    body: JSON.stringify({ userId, rating, text }),
-  });
+  const { reviewId } = review;
+  try {
+    const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+      method: "PUT",
+      body: JSON.stringify(review),
+    });
+    const data = await res.json();
+    return data;
+  } catch (errors) {
+    const error = errors.json();
+
+    return error;
+  }
 };
 
 export const postReviews = (review) => async (dispatch) => {

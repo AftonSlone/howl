@@ -63,7 +63,7 @@ router.put(
     if (review.userId === userId) {
       review.update({ rating, text });
       res.status = 200;
-      res.json();
+      res.json(review);
     }
   })
 );
