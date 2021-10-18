@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getStates } from "../../store/state";
 import { getTypes } from "../../store/type";
 import { getCities } from "../../store/city";
-import { newBusiness } from "../../store/business";
+import { newBusiness, fetchBusinesses } from "../../store/business";
 
 export default function NewBusinessForm({ setBusinessModal }) {
   const dispatch = useDispatch();
@@ -46,7 +46,10 @@ export default function NewBusinessForm({ setBusinessModal }) {
       });
       setErrors(result);
     }
-    if (!res.errors) setBusinessModal(false);
+    if (!res.errors) {
+      if (user) await dispatch(fetchBusinesses({ ownerId: user.id }));
+      setBusinessModal(false);
+    }
   };
   return (
     <form onSubmit={handleSubmit} className="newBusinessForm">

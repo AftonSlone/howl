@@ -38,9 +38,7 @@ export default function Navigation() {
     setClicked(!clicked);
   };
 
-  useEffect(() => {
-    if (user) dispatch(fetchBusinesses({ownerId: user.id}))
-  }, [businessModal])
+  
 
   return (
     <nav className="HeaderContainer">

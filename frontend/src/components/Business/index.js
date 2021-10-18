@@ -117,7 +117,7 @@ export default function Business() {
           <h2>{`Reviews`}</h2>
           <div className="businessReviewsContent">
             {currentBusiness.Reviews.map((review) => (
-              <div>
+              <div key={review.id}>
                 <div className="businessReviewScore">
                   <div
                     className={`businessReviewScoreIcon ${1 <= review.rating}`}
