@@ -84,7 +84,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `AftonSlone`, `howl`, `twitter_handle`, `linkedin_username`, `email`, `email_client`, `project_title`, `project_description`
+Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `AftonSlone`, `howl`, `twitter_handle`, `afton-slone`, `email`, `email_client`, `project_title`, `project_description`
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -226,5 +226,5 @@ Project Link: [https://github.com/AftonSlone/howl](https://github.com/AftonSlone
 [license-shield]: https://img.shields.io/github/license/AftonSlone/howl.svg?style=for-the-badge
 [license-url]: https://github.com/AftonSlone/howl/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[linkedin-url]: https://linkedin.com/in/afton-slone
 [product-screenshot]: images/screenshot.png
