@@ -41,7 +41,7 @@
     <a href="https://github.com/AftonSlone/howl/wiki"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/AftonSlone/howl">View Demo</a>
+    <a href="https://afton-howl-app.herokuapp.com/">View Demo</a>
     ·
     <a href="https://github.com/AftonSlone/howl/issues">Report Bug</a>
     ·
