@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/AftonSlone/howl">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://cdn.freebiesupply.com/logos/large/2x/yelp-1-logo-png-transparent.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Howl</h3>
