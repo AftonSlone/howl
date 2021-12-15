@@ -36,7 +36,7 @@
 <h3 align="center">Howl</h3>
 
   <p align="center">
-    project_description
+    Howl, a Yelp clone, is a online directory for discovering local businesses ranging from bars, restaurants, and cafes to hairdressers, spas, and gas stations.
     <br />
     <a href="https://github.com/AftonSlone/howl"><strong>Explore the docs »</strong></a>
     <br />
