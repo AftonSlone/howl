@@ -194,7 +194,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@AftonSlone](https://twitter.com/AftonSlone) - afton.slone@gmail.com
+Afton Slone - [@AftonSlone](https://twitter.com/AftonSlone) - afton.slone@gmail.com
 
 Project Link: [https://github.com/AftonSlone/howl](https://github.com/AftonSlone/howl)
 
