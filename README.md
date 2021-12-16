@@ -134,6 +134,16 @@ This is an example of how to list things you need to use the software and how to
    
 4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
 
+5. Run database migrations
+  ```sh
+  npx sequelize-cli db:migrate
+  ```
+  
+  6. Seed database
+  ```sh
+  npx sequelize-cli db:seed:all
+  ```
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
