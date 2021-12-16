@@ -152,6 +152,10 @@ This is an example of how to list things you need to use the software and how to
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+<img src="https://i.imgur.com/NMyJq9W.png" alt="Logo" width="180" height="80">
+<img src="https://i.imgur.com/I4tZH8v.png" alt="Logo" width="180" height="160">
+<img src="https://i.imgur.com/TGKIVa4.png" alt="Logo" width="180" height="80">
+
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
