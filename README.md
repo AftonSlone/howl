@@ -151,27 +151,20 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-<img src="https://i.imgur.com/NMyJq9W.png" alt="Logo" width="180" height="80">
-<img src="https://i.imgur.com/I4tZH8v.png" alt="Logo" width="180" height="160">
-<img src="https://i.imgur.com/TGKIVa4.png" alt="Logo" width="180" height="80">
+Signup for a new account.
+
+<img src="https://i.imgur.com/I4tZH8v.png" alt="Logo" width="480" height="360">
+
+or login to a pre existing account that you already have.
+
+<img src="https://i.imgur.com/NMyJq9W.png" alt="Logo" width="480" height="280">
+
+Once you are logged in find a business in your area and leave a review. 
+
+<img src="https://i.imgur.com/TGKIVa4.png" alt="Logo" width="480" height="280">
 
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [] Feature 1
-- [] Feature 2
-- [] Feature 3
-    - [] Nested Feature
-
-See the [open issues](https://github.com/AftonSlone/howl/issues) for a full list of proposed features (and known issues).
+_For more examples, please refer to the [Documentation](https://github.com/AftonSlone/howl/wiki)_
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -207,7 +200,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - afton.slone@gmail.com
+Your Name - [@AftonSlone](https://twitter.com/AftonSlone) - afton.slone@gmail.com
 
 Project Link: [https://github.com/AftonSlone/howl](https://github.com/AftonSlone/howl)
 
@@ -215,14 +208,7 @@ Project Link: [https://github.com/AftonSlone/howl](https://github.com/AftonSlone
 
 
 
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
 
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 
