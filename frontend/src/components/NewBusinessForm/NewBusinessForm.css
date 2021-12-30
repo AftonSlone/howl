@@ -1,7 +1,7 @@
 input[type="email"] {
   width: 60%;
   height: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 input[type="checkbox"] {
@@ -13,14 +13,14 @@ input[type="checkbox"] {
   width: 40%;
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  margin-top: 5px;
 }
 
 .newBusinessForm {
   font-size: 20px;
   color: black;
   box-sizing: border-box;
-  padding: 60px;
+  padding: 40px;
   background-color: white;
   width: 40%;
   display: flex;
@@ -37,7 +37,7 @@ input[type="checkbox"] {
   border-bottom: 2px solid crimson;
   width: 60%;
   height: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .newBusinessForm input:focus {
@@ -52,14 +52,14 @@ input[type="checkbox"] {
   justify-content: center;
   background-color: crimson;
   color: white;
-  font-size: 20px;
+  font-size: 5px;
   border-radius: 10px;
 }
 
 .error {
   margin-bottom: 5px;
   margin-top: 5px;
-  font-size: 15px;
+  font-size: 5px;
 }
 
 .newbusinessTypeBtn {
@@ -68,7 +68,7 @@ input[type="checkbox"] {
   background-color: white;
   cursor: pointer;
   border-bottom: 2px solid crimson;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .newbusinessTypeBtn:focus {
@@ -79,6 +79,6 @@ input[type="checkbox"] {
   width: 60%;
   height: 100px;
   background-color: white;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   border: 2px solid crimson;
 }

@@ -27,7 +27,6 @@ a {
   z-index: 1;
 }
 
-
 .menuContainer > button {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -39,7 +38,6 @@ a {
   font-size: 25px;
   color: crimson;
 }
-
 
 .logoutBtnContainer {
   z-index: 2;
@@ -55,7 +53,7 @@ a {
   align-items: center;
   cursor: pointer;
   margin-right: 25px;
-  color: white
+  color: white;
 }
 
 .profileButton:hover {
@@ -87,6 +85,7 @@ a {
 
 .navBtnSignup {
   border: 3px solid white;
+  width: 60%;
 }
 
 .navBtnSignup:hover {

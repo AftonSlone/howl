@@ -21,7 +21,8 @@ export default function BusinessList() {
       <Header />
       <div className="businessListContentWrapper">
         <div className="businessListContent">
-          <h1 className="businessListH1">Results</h1>
+          {!business.length && <h1 className="businessListH1">No Results</h1>}
+          {business.length && <h1 className="businessListH1">Results</h1>}
           {business.map((card) => (
             <BusinessCard key={card.id} data={card} />
           ))}
