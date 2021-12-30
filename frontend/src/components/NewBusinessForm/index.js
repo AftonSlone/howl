@@ -5,6 +5,7 @@ import { getStates } from "../../store/state";
 import { getTypes } from "../../store/type";
 import { getCities } from "../../store/city";
 import { newBusiness, fetchBusinesses } from "../../store/business";
+import { useHistory } from "react-router-dom";
 
 export default function NewBusinessForm({ setBusinessModal }) {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ export default function NewBusinessForm({ setBusinessModal }) {
   const states = useSelector((state) => state.state);
   const cities = useSelector((state) => state.city);
   const types = useSelector((state) => state.type);
+  const history = useHistory();
 
   const [name, setName] = useState("");
   const [typeId, setTypeId] = useState("");
@@ -49,6 +51,8 @@ export default function NewBusinessForm({ setBusinessModal }) {
     if (!res.errors) {
       if (user) await dispatch(fetchBusinesses({ ownerId: user.id }));
       setBusinessModal(false);
+
+      history.push(`/user/${user.id}`);
     }
   };
   return (

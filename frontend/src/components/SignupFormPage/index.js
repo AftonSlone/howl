@@ -38,9 +38,9 @@ export default function SignupFormPage({ setSignupModal }) {
   };
   return (
     <form onSubmit={handleSubmit} className="signupForm">
-      <ul className="errorsContainer">
+      <ul className="errorsContainer2">
         {errors.map((err) => (
-          <li className="error" key={err}>
+          <li className="error2" key={err}>
             {err}
           </li>
         ))}
@@ -95,7 +95,7 @@ export default function SignupFormPage({ setSignupModal }) {
           />
         </div>
       </div>
-      <div className="signupBtnContainer">
+      <div className="signupBtnContainer2">
         <button className="HeaderBtnSignup">Sign Up</button>
         <button
           className="HeaderBtnSignup"
