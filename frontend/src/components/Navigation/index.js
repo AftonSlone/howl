@@ -2,7 +2,10 @@ import "./Navigation.css";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/session";
-
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import ProfileButton from "./ProfileButton";
 import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
@@ -31,41 +34,68 @@ export default function Navigation() {
     setClicked(!clicked);
   };
   return (
-    <nav className="navContainer">
-      <div className="NavBtnContainer">
-        {!user && (
-          <div className="navBtn" onClick={() => setLoginModal(true)}>
-            Login
-          </div>
-        )}
-        {!user && (
-          <div
-            className="navBtn navBtnSignup"
-            onClick={() => setSignupModal(true)}
-          >
-            Signup
-          </div>
-        )}
-        {!user && (
-          <div
-            className="navBtn navBtnSignup"
-            onClick={() => {
-              dispatch(login({ credential: "demo", password: "password" }));
-            }}
-          >
-            Demo
-          </div>
-        )}
-        {user && user.businessAccount ? (
-          <button
-            className="navBtn navBtnSignup"
-            onClick={() => setBusinessModal(true)}
-          >
-            New Business
-          </button>
-        ) : null}
-        {user && <ProfileButton handleClick={handleClick} />}
-      </div>
+    <Container fluid id="test">
+      <Row>
+        <Col md={{ offset: 8 }}>
+          {!user && (
+            <Button
+              variant="outline-secondary"
+              size="lg"
+              onClick={() => setLoginModal(true)}
+            >
+              Login
+            </Button>
+          )}
+        </Col>
+
+        <Col>
+          {!user && (
+            <Button
+              variant="secondary"
+              size="lg"
+              onClick={() => setSignupModal(true)}
+            >
+              Signup
+            </Button>
+          )}
+        </Col>
+
+        <Col>
+          {!user && (
+            <Button
+              variant="secondary"
+              size="lg"
+              onClick={() => {
+                dispatch(login({ credential: "demo", password: "password" }));
+              }}
+            >
+              Demo
+            </Button>
+          )}
+        </Col>
+      </Row>
+      <Row>
+        <Col id="test2" sm={2} md={{ offset: 9 }}>
+          {user && user.businessAccount ? (
+            <Button
+              variant="outline-secondary"
+              size="lg"
+              onClick={() => setBusinessModal(true)}
+            >
+              New Business
+            </Button>
+          ) : null}
+        </Col>
+        <Col sm={1}>
+          {user && (
+            <ProfileButton
+              handleClick={handleClick}
+              variant="secondary"
+              text="text-primary"
+            />
+          )}
+        </Col>
+      </Row>
       {clicked && <Menu user={user} />}
       {loginModal && (
         <Modal component={LoginFormPage} setLoginModal={setLoginModal} />
@@ -79,6 +109,6 @@ export default function Navigation() {
           setBusinessModal={setBusinessModal}
         />
       )}
-    </nav>
+    </Container>
   );
 }
