@@ -130,7 +130,15 @@ export default function Navigation() {
           ) : null}
         </Col>
 
-        <Col>{user && <ProfileButton handleClick={handleClick} />}</Col>
+        <Col>
+          {user && (
+            <ProfileButton
+              variant="primary"
+              text="text-white"
+              handleClick={handleClick}
+            />
+          )}
+        </Col>
       </Row>
       {clicked && <Menu user={user} />}
       {loginModal && (

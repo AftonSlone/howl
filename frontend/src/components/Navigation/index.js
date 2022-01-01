@@ -75,7 +75,7 @@ export default function Navigation() {
         </Col>
       </Row>
       <Row>
-        <Col id='test2' sm={2} md={{offset: 9}}>
+        <Col id="test2" sm={2} md={{ offset: 9 }}>
           {user && user.businessAccount ? (
             <Button
               variant="outline-secondary"
@@ -86,7 +86,15 @@ export default function Navigation() {
             </Button>
           ) : null}
         </Col>
-        <Col sm={1}>{user && <ProfileButton handleClick={handleClick} />}</Col>
+        <Col sm={1}>
+          {user && (
+            <ProfileButton
+              handleClick={handleClick}
+              variant="secondary"
+              text="text-primary"
+            />
+          )}
+        </Col>
       </Row>
       {clicked && <Menu user={user} />}
       {loginModal && (
