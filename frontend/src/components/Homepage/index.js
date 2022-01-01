@@ -5,6 +5,7 @@ import { getStates } from "../../store/state";
 import { getCities } from "../../store/city";
 import { getTypes } from "../../store/type";
 import { useHistory } from "react-router-dom";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 import Navigation from "../Navigation";
 
@@ -37,63 +38,65 @@ export default function Homepage() {
 
   return (
     <div className="homepage">
-      <div className="navWrapper">
-        <Navigation />
-        <div className="homepageLogo">
-          <img
-            className="HeaderLogo1"
-            src="https://i.imgur.com/SzFAJOX.png"
-            alt=""
-          />
-        </div>
-        <div className="homepageSearchWrapper">
-          <select
-            name="typeId"
-            id="typeId"
-            className="businessTypeBtn left"
-            onChange={(e) => setTypeId(e.target.value)}
-          >
-            <option>Business Type</option>
-            {types &&
-              Object.values(types).map((type) => (
-                <option key={type.id} value={type.id}>
-                  {type.name}
-                </option>
-              ))}
-          </select>
-          <select
-            name="stateId"
-            id="stateId"
-            className="businessTypeBtn"
-            onChange={(e) => setStateId(e.target.value)}
-          >
-            <option>State</option>
-            {states &&
-              Object.values(states).map((state) => (
-                <option key={state.id} value={state.id}>
-                  {state.name}
-                </option>
-              ))}
-          </select>
-          <select
-            name="cityId"
-            id="cityId"
-            className="businessTypeBtn"
-            onChange={(e) => setCityId(e.target.value)}
-          >
-            <option>City</option>
-            {cities &&
-              Object.values(cities).map((city) => (
-                <option key={city.id} value={city.id}>
-                  {city.name}
-                </option>
-              ))}
-          </select>
-          <button className="searchBtn" onClick={handleSearch}>
-            <i className="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
+      <Container fluid id="testing">
+        <Row>
+          <Navigation />
+        </Row>
+        <Row className="justify-content-center">
+              <img
+                className="HeaderLogo1"
+                src="https://i.imgur.com/SzFAJOX.png"
+                alt=""
+              />
+        </Row>
+        <Row className="justify-content-center">
+            <select
+              name="typeId"
+              id="typeId"
+              className="businessTypeBtn left"
+              onChange={(e) => setTypeId(e.target.value)}
+            >
+              <option>Business Type</option>
+              {types &&
+                Object.values(types).map((type) => (
+                  <option key={type.id} value={type.id}>
+                    {type.name}
+                  </option>
+                ))}
+            </select>
+            <select
+              name="stateId"
+              id="stateId"
+              className="businessTypeBtn"
+              onChange={(e) => setStateId(e.target.value)}
+            >
+              <option>State</option>
+              {states &&
+                Object.values(states).map((state) => (
+                  <option key={state.id} value={state.id}>
+                    {state.name}
+                  </option>
+                ))}
+            </select>
+            <select
+              name="cityId"
+              id="cityId"
+              className="businessTypeBtn"
+              onChange={(e) => setCityId(e.target.value)}
+            >
+              <option>City</option>
+              {cities &&
+                Object.values(cities).map((city) => (
+                  <option key={city.id} value={city.id}>
+                    {city.name}
+                  </option>
+                ))}
+            </select>
+            <button className="searchBtn" onClick={handleSearch}>
+              <i className="fas fa-search"></i>
+            </button>
+        </Row>
+      </Container>
       <div className="homepageContent">
         {/* <div className="homepageLinks">Links</div> */}
       </div>

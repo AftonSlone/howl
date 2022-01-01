@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../../store/session";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import ProfileButton from "../Navigation/ProfileButton";
 import LoginFormPage from "../LoginFormPage";
 import SignupFormPage from "../SignupFormPage";
@@ -38,56 +39,99 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="HeaderContainer">
-      <div>
-        <NavLink to="/">
-          <img
-            className="HeaderLogo"
-            src="https://i.imgur.com/SzFAJOX.png"
-            alt=""
-          />
-        </NavLink>
-      </div>
-      <div className="HeaderBtnContainer">
-        {!user && (
-          <div className="HeaderBtn" onClick={() => setLoginModal(true)}>
-            Login
-          </div>
-        )}
-        {!user && (
-          <div className="HeaderBtnSignup" onClick={() => setSignupModal(true)}>
-            Signup
-          </div>
-        )}
-        {!user && (
-          <div
-            className="HeaderBtnSignup"
-            onClick={() => {
-              dispatch(login({ credential: "demo", password: "password" }));
-            }}
-          >
-            Demo
-          </div>
-        )}
-        {user && user.businessAccount ? (
-          <button
-            className="HeaderBtnSignup"
-            onClick={() => setBusinessModal(true)}
-          >
-            New Business
-          </button>
-        ) : null}
+    <Container fluid id="test">
+      <Row>
+        <Col sm={8}>
+          {!user && (
+            <NavLink to="/">
+              <img
+                className="HeaderLogo"
+                src="https://i.imgur.com/SzFAJOX.png"
+                alt=""
+              />
+            </NavLink>
+          )}
+        </Col>
+        <Col>
+          {!user && (
+            <Button
+              variant="primary"
+              size="lg"
+              className="text-secondary"
+              onClick={() => setLoginModal(true)}
+            >
+              Login
+            </Button>
+          )}
+        </Col>
+        <Col>
+          {!user && (
+            <Button
+              variant="primary"
+              size="lg"
+              className="text-secondary"
+              onClick={() => setSignupModal(true)}
+            >
+              Signup
+            </Button>
+          )}
+        </Col>
+        <Col>
+          {!user && (
+            <Button
+              variant="primary"
+              size="lg"
+              className="text-secondary"
+              onClick={() => {
+                dispatch(login({ credential: "demo", password: "password" }));
+              }}
+            >
+              Demo
+            </Button>
+          )}
+        </Col>
+      </Row>
+      <Row>
+        <Col md={7}>
+          {user && (
+            <NavLink to="/">
+              <img
+                className="HeaderLogo"
+                src="https://i.imgur.com/SzFAJOX.png"
+                alt=""
+              />
+            </NavLink>
+          )}
+        </Col>
 
-        {user && currentBusiness && user ? (
-          <button
-            className="HeaderBtnSignup"
-            onClick={() => setReviewModal(true)}
-          >
-            Write a Review
-          </button>
-        ) : null}
-        {user && <ProfileButton handleClick={handleClick} />}
-      </div>
+        <Col md={2}>
+          {user && currentBusiness && user ? (
+            <Button
+              variant="primary"
+              size="lg"
+              className="text-secondary"
+              onClick={() => setReviewModal(true)}
+            >
+              Write a Review
+            </Button>
+          ) : null}
+        </Col>
+
+        <Col md={2}>
+          {user && user.businessAccount ? (
+            <Button
+              variant="primary"
+              size="lg"
+              className="text-secondary"
+              onClick={() => setBusinessModal(true)}
+            >
+              New Business
+            </Button>
+          ) : null}
+        </Col>
+
+        <Col>{user && <ProfileButton handleClick={handleClick} />}</Col>
+      </Row>
       {clicked && <Menu user={user} />}
       {loginModal && (
         <Modal component={LoginFormPage} setLoginModal={setLoginModal} />
@@ -104,6 +148,6 @@ export default function Navigation() {
       {reviewModal && (
         <Modal component={NewReviewForm} setReviewModal={setReviewModal} />
       )}
-    </nav>
+    </Container>
   );
 }
