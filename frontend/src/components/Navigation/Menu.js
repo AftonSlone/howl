@@ -1,22 +1,23 @@
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { logout } from "../../store/session";
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 export default function Menu({ user }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const handleLogout = async () => {
     await dispatch(logout());
   };
   return (
-    <div className="menuContainer">
-      <div className="username">{user.username}</div>
-      <Link className="HeaderBtnSignup" to={`/user/${user.id}`}>
+    <Container className="menuContainer">
+      <Row className="username">{user.username}</Row>
+      <Button variant="primary" className="text-secondary" onClick={() => {history.push(`/user/${user.id}`)}}>
         Manage Businesses
-      </Link>
-      <button className="HeaderBtnSignup" onClick={handleLogout}>
+      </Button>
+      <Button variant="primary" className="text-secondary" onClick={handleLogout}>
         Logout
-      </button>
-    </div>
+      </Button>
+    </Container>
   );
 }
